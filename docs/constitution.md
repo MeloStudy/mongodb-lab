@@ -21,13 +21,14 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 ## Lab Design Standards
 
 - **Naming Convention**: All labs must follow the `XXX-slug-name` format (e.g., `001-crud-basics`).
-- **Setup & Cleanup**: Every lab folder MUST include a `setup.sh` and a `reset.sh` script. `reset.sh` must restore the environment to a clean state by tearing down Docker containers and networks. These scripts guarantee the lab is agnostic of external orchestration tools.
+- **Setup & Cleanup Native Execution**: Scripts like `setup.sh` and `reset.sh` are **PROHIBITED** to prevent "magic button" abstraction. The lab's `README.md` MUST explicitly guide the user to execute the underlying native tools (e.g., `docker-compose up -d`, `npm test`) so they learn the technology actively.
 - **Monorepo Architecture**: Node.js and Java libraries are managed centrally at the repository root (e.g., via NPM Workspaces). Individual labs should act as sub-modules to prevent dependency bloat.
-- **Data Seeding**: When a lab requires pre-existing data for querying (e.g., Aggregations), the `setup.sh` MUST automatically seed a rich dataset into the local Docker container.
+- **Data Seeding**: When a lab requires pre-existing data for querying (e.g., Aggregations), provide explicit native commands to mount init scripts or import datasets.
+- **Command Dissection**: Every README must include a mapping of CLI flags and arguments for new tools introduced. Complex flags (like `--format` templates or nested query options) MUST be dissected.
 - **Theoretical Foundation**: Every lab folder MUST contain a `CONCEPT.md` file explaining the core technical concepts.
 - **Code Documentation**: All testing scripts (`.js` or `.java`) MUST include comments explaining what each step validates.
-- **Makefile Standard (Optional)**: Makefiles are strictly intended as **optional** alternative wrappers. The core logic MUST live inside `setup.sh`, `reset.sh`, or native commands. The lab must function perfectly without `make`.
-- **Atomic Cleanup**: Every lab folder MUST include a `reset.sh` script that restores the environment to a "Not Provisioned" state by removing all associated resources (Containers, Volumes, Networks). This ensures absolute idempotence for each learning session.
+- **Makefile Standard (Optional)**: Makefiles are strictly intended as **optional** alternative wrappers holding the raw native commands as shortcuts for CI or advanced users. The lab must function perfectly without `make`.
+- **Atomic Cleanup**: Every lab MUST provide instructions in the `README.md` that restore the environment to a "Not Provisioned" state by removing all associated resources (Containers, Volumes, Networks) using native commands. This ensures absolute idempotence.
 
 ## Technical Stack & Standards
 

@@ -13,7 +13,7 @@ description: "Task list template for feature implementation"
 ## Phase 1: Lab Infrastructure (Shared)
 
 - [ ] T001 Setup lab directory and base container configuration (Docker/Podman)
-- [ ] T002 Implement `reset.sh` script to ensure clean state
+- [ ] T002 Implement Makefile or document native reset commands to ensure clean state
 - [ ] T003 Create validation test framework for the lab
 
 ---
