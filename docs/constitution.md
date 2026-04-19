@@ -1,0 +1,64 @@
+# MongoDB Lab Constitution
+
+## Core Principles
+
+### I. Developer-First with Operations Context
+The laboratory is designed primarily for Backend Developers and Software Engineers. The curriculum focuses heavily on Data Modeling, the Aggregation Framework, and Application Integration (CRUD, Transactions). However, a holistic engineer must understand the infrastructure they use. Therefore, each major module MUST conclude with an "Operations & DBA" lab that explores the administrative, scaling, or performance implications of the concepts just learned.
+
+### II. JavaScript as the Lingua Franca, Java for the Enterprise
+Since MongoDB natively parses and executes JavaSript (via `mongosh` and BSON structures), the primary language for writing automated tests across the general labs will be **JavaScript (Node.js with `Jest`)**. This reduces context-switching when writing NoSQL queries. 
+To serve real-world enterprise needs, the curriculum MUST include a dedicated "Application Integration" module entirely focused on **Java (Spring Data MongoDB or MongoSync Java Driver)**.
+
+### III. Reproducible & Clean Environments
+All core laboratory environments MUST be local, containerized, and portable using **Docker / Docker Compose**. A student should be able to spin up any lab environment with minimal host dependencies. Any lab completion or reset must leave no dangling containers or volumes.
+
+### IV. Educational Clarity & Theoretical Foundation
+Every lab MUST be self-explanatory and conceptually grounded. Documenting the "how" (commands/code) is insufficient. Each lab must explain the "why" and the underlying NoSQL paradigm. Theory MUST be separated into its own `CONCEPT.md` file to keep the practical README focused and clean.
+
+### V. Robust Validation (TDD for Learning)
+Each laboratory MUST include solid automated tests to verify the learner's progress and the lab's integrity. These tests serve as the validation gate passing criteria.
+
+## Lab Design Standards
+
+- **Naming Convention**: All labs must follow the `XXX-slug-name` format (e.g., `001-crud-basics`).
+- **Setup & Cleanup**: Every lab folder MUST include a `setup.sh` and a `reset.sh` script. `reset.sh` must restore the environment to a clean state by tearing down Docker containers and networks.
+- **Data Seeding**: When a lab requires pre-existing data for querying (e.g., Aggregations), the `setup.sh` MUST automatically seed a rich dataset into the local Docker container.
+- **Theoretical Foundation**: Every lab folder MUST contain a `CONCEPT.md` file explaining the core technical concepts.
+- **Code Documentation**: All testing scripts (`.js` or `.java`) MUST include comments explaining what each step validates.
+- **Makefile Standard (Optional)**: Every laboratory MAY include a `Makefile` to simplify common operations (`build`, `run`, `test`, `clean`). The logic in the `Makefile` MUST remain independent from other scripts (like `setup.sh` or `reset.sh`) to ensure the project remains agnostic.
+- **Atomic Cleanup**: Every lab folder MUST include a `reset.sh` script that restores the environment to a "Not Provisioned" state by removing all associated resources (Containers, Volumes, Networks). This ensures absolute idempotence for each learning session.
+
+## Technical Stack & Standards
+
+- **Core Engine**: MongoDB Community Server `7.0+` (via Docker).
+- **Tooling**: MongoDB Shell (`mongosh`) and MongoDB Compass (UI).
+- **Core Validation Engine**: Node.js `v20+` and `Jest`.
+- **Enterprise Validation Engine**: Java `21+` and `JUnit 5`.
+- **Language**: All generated content (Labs, Documentation, Specs, Comments) MUST be in **English**.
+
+## Agent Boundaries
+
+### Always Do
+- Write a `spec.md`, `plan.md`, and `tasks.md` before implementing a new lab.
+- Update `tasks.md` and the central `syllabus.md` after finalizing a lab's implementation.
+- Ensure all labs pass their corresponding validation tests (e.g., `npm test`, `mvn test`) before committing.
+- Follow the `XXX-slug` naming convention.
+- Clean up specific resources created during lab execution or testing, enforcing the Atomic Cleanup rule.
+
+### Ask First
+- Modifying the Core Principles or Curriculum Structure.
+- Deleting existing laboratories.
+- Introducing external system dependencies not covered by the standard stack.
+
+### Never Do
+- Ignore failing validation tests.
+- Use global/destructive commands (e.g., `docker system prune`, `docker rm -f $(docker ps -aq)`) that could affect the host system's other containers or images.
+- Hardcode sensitive credentials in the source code; always use environment variables or `.env` files.
+- Use non-English language in any part of the repository.
+
+## Governance
+
+- **Version Control**: Changes to the curriculum or core principles require a MINOR version bump.
+- **Quality Gates**: New labs MUST pass all validation tests and be reviewed for educational clarity before being added to the syllabus.
+
+**Version**: 0.1.0 | **Ratified**: [Current Date]
