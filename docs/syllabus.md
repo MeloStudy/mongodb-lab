@@ -5,9 +5,9 @@ This document tracks the progress of the curriculum and the status of each labor
 ## Module 1: The Core Database (Introduction & Foundation)
 Focus: Understanding the ecosystem, basic connection, and how MongoDB stores data under the hood.
 
-- [ ] **LAB-001: Hello MongoDB**
+- [x] **LAB-001: Hello MongoDB**
   - Concepts: Basic concepts, Ecosystem, Installation (Docker), Shell vs Drivers.
-  - Status: *Planned*
+  - Status: *Completed*
 - [ ] **LAB-002: BSON & Data Types**
   - Concepts: JSON vs BSON. Int32, Int64, Doubles and Decimal128 (Financial Precision).
   - Status: *Planned*
