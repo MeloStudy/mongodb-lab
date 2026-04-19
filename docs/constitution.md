@@ -21,11 +21,12 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 ## Lab Design Standards
 
 - **Naming Convention**: All labs must follow the `XXX-slug-name` format (e.g., `001-crud-basics`).
-- **Setup & Cleanup**: Every lab folder MUST include a `setup.sh` and a `reset.sh` script. `reset.sh` must restore the environment to a clean state by tearing down Docker containers and networks.
+- **Setup & Cleanup**: Every lab folder MUST include a `setup.sh` and a `reset.sh` script. `reset.sh` must restore the environment to a clean state by tearing down Docker containers and networks. These scripts guarantee the lab is agnostic of external orchestration tools.
+- **Monorepo Architecture**: Node.js and Java libraries are managed centrally at the repository root (e.g., via NPM Workspaces). Individual labs should act as sub-modules to prevent dependency bloat.
 - **Data Seeding**: When a lab requires pre-existing data for querying (e.g., Aggregations), the `setup.sh` MUST automatically seed a rich dataset into the local Docker container.
 - **Theoretical Foundation**: Every lab folder MUST contain a `CONCEPT.md` file explaining the core technical concepts.
 - **Code Documentation**: All testing scripts (`.js` or `.java`) MUST include comments explaining what each step validates.
-- **Makefile Standard (Optional)**: Every laboratory MAY include a `Makefile` to simplify common operations (`build`, `run`, `test`, `clean`). The logic in the `Makefile` MUST remain independent from other scripts (like `setup.sh` or `reset.sh`) to ensure the project remains agnostic.
+- **Makefile Standard (Optional)**: Makefiles are strictly intended as **optional** alternative wrappers. The core logic MUST live inside `setup.sh`, `reset.sh`, or native commands. The lab must function perfectly without `make`.
 - **Atomic Cleanup**: Every lab folder MUST include a `reset.sh` script that restores the environment to a "Not Provisioned" state by removing all associated resources (Containers, Volumes, Networks). This ensures absolute idempotence for each learning session.
 
 ## Technical Stack & Standards
