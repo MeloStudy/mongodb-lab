@@ -1,53 +1,27 @@
----
-
-description: "Task list template for feature implementation"
----
-
 # Tasks: [LAB NAME]
 
 **Input**: Design documents from `/specs/[###-lab-name]/`
-**Prerequisites**: plan.md (required), spec.md (required for scenarios), research.md
+**Prerequisites**: plan.md (required), educational-spec.md (required).
 
-**Validation**: This project follows strict Automated Validation. Tests for each scenario MUST be written before or alongside the lab implementation.
+**Validation Goal**: This project follows strict "TDD for Learning" (Test-Driven Learning). The automated tests (Jest/JUnit) MUST ensure exactly what the README teaches.
 
-## Phase 1: Lab Infrastructure (Shared)
+## Phase 1: Monorepo Setup (Clone & Prepare)
+- [ ] T001 Scaffold lab directory by cloning `labs/000-base-setup/`.
+- [ ] T002 Update local `package.json` workspace identifier (or `pom.xml` if Java Module).
+- [ ] T003 Ensure `docker-compose.yml` reflects the correct container name format (e.g. `mongodb_lab_XXX`).
 
-- [ ] T001 Setup lab directory and base container configuration (Docker/Podman)
-- [ ] T002 Implement Makefile or document native reset commands to ensure clean state
-- [ ] T003 Create validation test framework for the lab
+## Phase 2: Validation Framework Implementation (TDD)
+- [ ] T004 Write validation script logic (e.g., `tests/validator.test.js`) to cover Scenario 1 outcomes.
+- [ ] T005 Write validation script logic to cover Scenario 2 outcomes.
+- [ ] T006 Provide required codebase comments on what each test step validates.
 
----
+## Phase 3: Educational Content & Hands-On Environment
+- [ ] T007 Write the theoretical `CONCEPT.md` detailing the "Why".
+- [ ] T008 Implement the `init/seed.js` data dump logic if the lab requires pre-existing data.
+- [ ] T009 Write the step-by-step native `README.md` guide for Scenario 1 and 2.
+- [ ] T010 Inject **Command Dissection** blocks into `README.md` for any new native flags or structural query.
 
-## Phase 2: Scenario 1 - [Title] (Priority: P1) 🎯 Core Objective
-
-**Goal**: [What the learner will achieve in this scenario]
-
-### Validation for Scenario 1
-- [ ] T004 Implement automated validation test for scenario 1
-- [ ] T005 [P] Document expected success state and common failure modes
-
-### Implementation for Scenario 1
-- [ ] T006 Create lab environment for scenario 1
-- [ ] T007 Write "Self-Explanatory" guide/readme for scenario 1
-- [ ] T008 [P] Add interactive hints/feedback scripts
-
----
-
-## Phase 3: Scenario 2 - [Title] (Priority: P2)
-
-### Validation for Scenario 2
-- [ ] T009 Implement automated validation test for scenario 2
-
-### Implementation for Scenario 2
-- [ ] T010 Create lab environment for scenario 2
-- [ ] T011 Write documentation for scenario 2 concepts
-- [ ] T012 Integrate with Scenario 1 (ensure progression)
-
----
-
-## Phase N: Educational Polish & Final Validation
-
-- [ ] TXXX [P] Review all documentation for "Educational Clarity"
-- [ ] TXXX Verify lab reset script works correctly
-- [ ] TXXX Perform end-to-end "Learner Journey" walkthrough
-- [ ] TXXX [P] Final syllabus alignment check
+## Phase 4: Idempotency & Clean Up Verifications
+- [ ] T011 Verify `README.md` Atomic Cleanup command runs natively without errors (`docker-compose down -v --remove-orphans`).
+- [ ] T012 Verify `Makefile` shortcut targets operate purely as optional proxies.
+- [ ] T013 Perform end-to-end "Learner Journey" Walkthrough.
