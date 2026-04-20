@@ -1,0 +1,9 @@
+{
+  "name": "lab-002-bson-data-types",
+  "version": "1.0.0",
+  "description": "Base infrastructure validation for MongoDB Labs",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}
