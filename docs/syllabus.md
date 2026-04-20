@@ -11,9 +11,9 @@ Focus: Understanding the ecosystem, basic connection, and how MongoDB stores dat
 - [x] **LAB-002: BSON & Data Types**
   - Concepts: JSON vs BSON. Int32, Int64, Doubles and Decimal128 (Financial Precision).
   - Status: *Completed*
-- [ ] **LAB-003: DevOps Wrap-up: Shell & Server Config**
+- [x] **LAB-003: DevOps Wrap-up: Shell & Server Config**
   - Concepts: Advanced Node configuration, `dbpath`, `logpath`, Configuration files (`.cfg`).
-  - Status: *Planned*
+  - Status: *Completed*
 
 ## Module 2: Complete CRUD Operations
 Focus: Mastering Create, Read, Update, and Delete operations at a granular level.

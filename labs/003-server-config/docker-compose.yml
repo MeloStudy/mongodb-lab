@@ -1,0 +1,15 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb_lab_003
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongod.conf:/etc/mongod.conf
+      - mongodb_data:/data/db
+    command: ["--config", "/etc/mongod.conf"]
+    environment:
+      - MONGO_INITDB_DATABASE=server_config_db
+
+volumes:
+  mongodb_data:
