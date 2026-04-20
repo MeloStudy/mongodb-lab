@@ -1,0 +1,13 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb_lab_004
+    ports:
+      - "27017:27017"
+    environment:
+      # Disabling auth for local educational environments until Security Module
+      MONGO_INITDB_DATABASE: lab_db
+    volumes:
+      # Optional init script mounting point
+      - ./init:/docker-entrypoint-initdb.d
+    # Ephemeral testing environment (No permanent data volume mounted)
