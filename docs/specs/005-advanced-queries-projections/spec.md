@@ -1,45 +1,41 @@
-# Lab Specification: LAB-005: Advanced Queries & Projections
+# Lab Specification: LAB-005: Advanced Queries & Projections (Expanded)
 
 **Feature Branch**: `005-advanced-queries-projections`
-**Status**: Draft
+**Status**: Revised
 **Syllabus Section**: Complete CRUD Operations
 
 ## Syllabus Alignment *(mandatory)*
 
-- **Concept**: Comparison Operators (`$gt`, `$in`), Logical (`$and`, `$or`), Array Operators (`$all`, `$elemMatch`, `$size`).
-- **Prerequisites**: LAB-001, LAB-004.
+- **Concept**: Logical Operators (`$and`, `$or`, `$in`), Schema/Element Checks (`$exists`, `$type`), Array Precision (`$all`, `$size`), and Projections.
+- **Prerequisites**: LAB-004.
 - **Learning Objectives**:
-  - LO-001: Use complex array filters to find specific sub-document patterns.
-  - LO-002: Optimize data transfer using Projections (1/0 flags).
-  - LO-003: Understand the difference between querying "any element in array" vs "one specific element satisfying all conditions" (`$elemMatch`).
+  - LO-001: Query nested arrays using `$elemMatch` to handle independent element conditions.
+  - LO-002: Use logical operators to combine multiple search criteria.
+  - LO-003: Query by array size and subset presence.
+  - LO-004: Detect missing or inconsistent fields using `$exists` and `$type`.
 
 ## Interactive Scenarios & Validation *(mandatory)*
 
-### Scenario 1 - The "Review Hunter" (Priority: P1)
-The learner will query a `inventory` collection where each document has a `shipments` array of objects. They must find documents where **a single shipment** has both `status: "delivered"` and `quantity: { $gt: 50 }`. 
+### Scenario 1 - The Precision Filter (Trap)
+Targeting the common mistake of naive dot-notation on arrays. 
+**Validation**: Test passes only if `$elemMatch` is used.
 
-**Validation (Automated Test)**: Verification that the student used `$elemMatch` instead of separate top-level filters (which would return false positives where one shipment satisfies `status` and *another* satisfies `quantity`).
-
----
-
-### Scenario 2 - Data Slimming (Priority: P2)
-The learner will perform a query that excludes large `description` fields and `_id`, simulating a REST API response for a summary list.
-
-**Validation (Automated Test)**: A test that inspects the JSON output of a search script to ensure the forbidden fields are missing.
+### Scenario 2 - The Auditor (Auditing & Logic)
+Find products that match complex business rules:
+- Must have "networking" and "security" tags (`$all`).
+- Must have exactly 3 tags (`$size`).
+- Must have a `warranty_notes` field present (`$exists`).
+- Matching either "A" or "B" in warehouses (`$in`).
 
 ---
 
 ## Educational Requirements *(mandatory)*
 
 ### Concepts to Explain
-- **EX-001**: **Array Semantics**: Why `{ "array.field": X, "array.field": Y }` often yields buggy results in MongoDB.
-- **EX-002**: **Projection Limits**: Rules of exclusion and inclusion (you cannot mix them except for `_id`).
+- **EX-001**: Difference between `$in` (any of these) and `$all` (all of these).
+- **EX-002**: The `$size` limitation (only exact matches, no ranges).
+- **EX-003**: Projection inclusion vs exclusion rules (cannot mix except for `_id`).
 
-### Technical Requirements
-- **TR-001**: Containerized strictly using **Docker / Docker Compose** (MongoDB 7.0+).
-- **TR-002**: Automated validation tests (Node.js/Jest).
-- **TR-003**: Provide a "Command Dissection" for `$elemMatch`.
-
-## Success Criteria *(measurable outcomes)*
-- **SC-001**: Learner successfully retrieves only the target documents from a complex array structure.
-- **SC-002**: Learner successfully reduces document size using projections.
+### Success Criteria
+- **SC-001**: Learner differentiates between array-level and element-level matching.
+- **SC-002**: Learner successfully audits a collection for specific field existence.
