@@ -1,0 +1,9 @@
+{
+  "name": "lab-005-advanced-queries-projections",
+  "version": "1.0.0",
+  "description": "Advanced Queries & Projections",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}

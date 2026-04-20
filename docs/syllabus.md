@@ -18,12 +18,12 @@ Focus: Understanding the ecosystem, basic connection, and how MongoDB stores dat
 ## Module 2: Complete CRUD Operations
 Focus: Mastering Create, Read, Update, and Delete operations at a granular level.
 
-- [ ] **LAB-004: Creating Data**
-  - Concepts: `insert()`, Ordered Inserts, Write Concern, Atomicity, and Data Import.
-  - Status: *Planned*
-- [ ] **LAB-005: Reading Data**
-  - Concepts: Query selectors, Logical/Comparison Operators, Cursors, Sorting, and Projections.
-  - Status: *Planned*
+- [x] **LAB-004: Advanced Inserts & Write Concerns**
+  - Concepts: `insertOne`, `insertMany`, Ordered vs Unordered, `writeConcern` (w: "majority", j: true).
+  - Status: Completed (Docker verified).
+- [x] **LAB-005: Advanced Queries & Projections**
+  - Concepts: Comparison Operators (`$gt`, `$in`), Logical (`$and`, `$or`), Element (`$exists`, `$type`), Array Operators (`$all`, `$elemMatch`, `$size`).
+  - Status: Completed (TDD verified).
 - [ ] **LAB-006: Updating Data**
   - Concepts: `$set`, `$inc`, `$mul`, `$min`/`$max`, `upsert`, Array Updates (filters and `$addToSet`).
   - Status: *Planned*
