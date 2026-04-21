@@ -2,6 +2,15 @@
 
 In production environments, you never start MongoDB by manually passing 50 flags to a command-line interface. Instead, you use a **Declarative Configuration File**.
 
+## The Daemon (`mongod`) vs. The Shell (`mongosh`)
+
+Understanding the distinction between these two components is fundamental:
+
+- **`mongod` (The Daemon)**: This is the actual database engine. It is a background process that handles data requests, manages data access, and performs background management operations. It is the "server".
+- **`mongosh` (The Shell)**: This is a JavaScript interface to MongoDB. It is a client tool used to connect to a running `mongod` instance to query data, perform administrative tasks, and manage the database.
+
+In this lab, we are configuring the **daemon** behavior using a file.
+
 ## CLI Flags vs. Configuration Files
 - **CLI Flags**: Good for quick tests (e.g., `mongod --dbpath /tmp/data`). Hard to version control, easy to mistype.
 - **Config Files**: Mandatory for production. Written in YAML. Can be tracked in Git, peer-reviewed, and deployed consistently.

@@ -6,15 +6,25 @@ Welcome to the DevOps finale! In this lab, you will move from simple command-lin
 
 In this lab, our `docker-compose.yml` has been modified to ignore the default MongoDB startup and instead read a configuration file from `/etc/mongod.conf`.
 
-1. Open `mongod.conf` in this directory.
-2. Observe the structure. It uses **YAML**.
-3. **Task**: Uncomment and complete the `TODO` markers.
-   - Set `systemLog.path` to `/data/db/mongod.log`.
-   - Set `storage.dbPath` to `/data/db`.
-4. Deploy the environment:
+1. Open `mongod.conf` in this directory and observe the structure.
+2. Deploy the environment:
    ```bash
    docker-compose up -d
    ```
+
+### 🔍 Understanding the Configuration (`mongod.conf`)
+
+Unlike passing flags to a binary, the YAML configuration allows for structured management:
+
+- **`systemLog`**:
+    - `destination: file`: Instructs MongoDB to send all log output to a file instead of `stdout`.
+    - `path`: The absolute path inside the container where the log file is created.
+    - `logAppend: true`: Ensures that when the server restarts, it adds new logs to the end of the existing file instead of overwriting it.
+- **`storage`**:
+    - `dbPath`: The directory where MongoDB stores its data files (BSON files, indices, etc.).
+- **`net`**:
+    - `port`: The internal port the daemon listens on (Default: 27017).
+    - `bindIp: 0.0.0.0`: Instructs MongoDB to listen on all available network interfaces, which is necessary for container communication.
 
 > **Warning**: MongoDB will fail to start if the paths defined in `mongod.conf` do not exist or have wrong permissions inside the container. We have pre-mapped these volumes in `docker-compose.yml` for you.
 

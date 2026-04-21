@@ -6,7 +6,7 @@
 
 ## Syllabus Alignment *(mandatory)*
 
-- **Concept**: Advanced Node configuration, `dbpath`, `logpath`, Configuration files (`.cfg` or `.conf`).
+- **Concept**: Advanced Node configuration, `dbpath`, `logpath`, Configuration files (`.conf`).
 - **Prerequisites**: LAB-001 (Docker concepts), LAB-002.
 - **Learning Objectives**:
   - LO-001: Configure a MongoDB instance using a declarative YAML configuration file (`mongod.conf`).

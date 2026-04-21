@@ -12,7 +12,7 @@ Focus: Understanding the ecosystem, basic connection, and how MongoDB stores dat
   - Concepts: JSON vs BSON. Int32, Int64, Doubles and Decimal128 (Financial Precision).
   - Status: *Completed*
 - [x] **LAB-003: DevOps Wrap-up: Shell & Server Config**
-  - Concepts: Advanced Node configuration, `dbpath`, `logpath`, Configuration files (`.cfg`).
+  - Concepts: Advanced Node configuration, `dbpath`, `logpath`, Configuration files (`.conf`).
   - Status: *Completed*
 
 ## Module 2: Complete CRUD Operations
@@ -24,9 +24,9 @@ Focus: Mastering Create, Read, Update, and Delete operations at a granular level
 - [x] **LAB-005: Advanced Queries & Projections**
   - Concepts: Comparison Operators (`$gt`, `$in`), Logical (`$and`, `$or`), Element (`$exists`, `$type`), Array Operators (`$all`, `$elemMatch`, `$size`).
   - Status: Completed (TDD verified).
-- [ ] **LAB-006: Updating Data**
-  - Concepts: `$set`, `$inc`, `$mul`, `$min`/`$max`, `upsert`, Array Updates (filters and `$addToSet`).
-  - Status: *Planned*
+- [x] **LAB-006: Updating Data**
+  - Concepts: `$set`, `$inc`, `$mul`, `$rename`, `$unset`, `upsert`, Array Updates (`$push`, `$addToSet`, `$pull`) and Positional Operators (`$[]`, `arrayFilters`).
+  - Status: *Completed (Full Mastery verified)*
 - [ ] **LAB-007: Deleting Data & Tooling**
   - Concepts: `deleteOne`, `deleteMany`, Collection cleanup. Visual Exploration using **MongoDB Compass**.
   - Status: *Planned*
