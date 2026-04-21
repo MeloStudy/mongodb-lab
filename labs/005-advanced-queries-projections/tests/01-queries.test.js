@@ -83,6 +83,17 @@ describe('LAB-005: Advanced Query Precision', () => {
     expect(results[0].product).toBe("Advanced Router");
   });
 
+  test('SC006: Range Array Length Matching ($expr + $size)', async () => {
+    // More than 2 tags: Advanced Router (3), Pro Firewall (4)
+    const results = await collection.find({
+      $expr: { $gt: [{ $size: "$tags" }, 2] }
+    }).toArray();
+
+    expect(results.length).toBe(2);
+    expect(results.map(r => r.product)).toContain("Advanced Router");
+    expect(results.map(r => r.product)).toContain("Pro Firewall");
+  });
+
   test('SC004: Schema Check ($exists)', async () => {
     // Does NOT have warranty_notes: Base Switch and Fiber Cable
     const results = await collection.find({

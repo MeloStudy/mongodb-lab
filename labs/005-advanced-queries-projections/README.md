@@ -86,11 +86,15 @@ Now let's use advanced operators to audit our inventory requirements.
    ```
 
 2. **Task ($size)**: Find all products that have **exactly 3** tags.
-   ```javascript
-   db.inventory.find({ 
-     tags: { $size: 3 } 
-   })
-   ```
+    ```javascript
+    db.inventory.find({ 
+      tags: { $size: 3 } 
+    })
+    ```
+    *Expert Tip: `$size` only supports exact matches. To find products with **more than 2** tags, use `$expr`:*
+    ```javascript
+    db.inventory.find({ $expr: { $gt: [{ $size: "$tags" }, 2] } })
+    ```
 
 3. **Task ($exists)**: Find all products that do **not** have the `warranty_notes` field.
    ```javascript

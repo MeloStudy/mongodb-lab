@@ -16,7 +16,10 @@ Equivalent to an `$and` operation on a single field. It ensures that the array c
 ### $size
 Matches documents where an array has exactly the specified number of elements.
 > [!WARNING]
-> `$size` only accepts exact numbers. You cannot use it for ranges like `{ $size: { $gt: 5 } }`. For ranges, you would typically need a calculated `size` field or a `$where` clause (not recommended for performance).
+> `$size` only accepts exact numbers. You cannot use it for ranges like `{ $size: { $gt: 5 } }`. 
+> 
+> **Alternative for ranges**: If you need to find arrays with more than 5 elements, use the **`$expr`** operator with the aggregation `$size` function:
+> `db.collection.find({ $expr: { $gt: [{ $size: "$tags" }, 5] } })`
 
 ## 3. Logical Operators
 
