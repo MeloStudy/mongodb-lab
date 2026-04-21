@@ -94,7 +94,7 @@ Focus: Bridging the database with real application logic, with a strong primary 
 Focus: Beyond local containers into production-grade systems.
 
 - [ ] **LAB-021: High Availability & Scaling**
-  - Concepts: Replica Sets (Elections), Capped Collections, and Sharding fundamentals.
+  - Concepts: Replica Sets (Elections), Read & Write Concerns in Clusters, Capped Collections, and Sharding fundamentals.
   - Status: *Planned*
 - [ ] **LAB-022: Managing MongoDB Atlas (Cloud)**
   - Concepts: Atlas provisioning, IP filtering, Data API integration.

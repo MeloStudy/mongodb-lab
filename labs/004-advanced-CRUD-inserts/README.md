@@ -49,7 +49,7 @@ By default, an error in a bulk insert stops the entire process. Let's break that
 Now, let's configure physical data safety using the Node.js Driver.
 
 1. Open `driver.js`.
-2. **Task**: Find the `TODO` and implement the `writeConcern` to require both `"majority"` acknowledgement and `journal` confirmation.
+2. **Review the implementation** of the `writeConcern` to require both `"majority"` acknowledgement and `journal` confirmation.
 3. Run your script:
    ```bash
    node driver.js
