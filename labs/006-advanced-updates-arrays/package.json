@@ -1,0 +1,9 @@
+{
+  "name": "lab-006-advanced-updates-arrays",
+  "version": "1.0.0",
+  "description": "Advanced Updates (Atomic Operators & Arrays)",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}
