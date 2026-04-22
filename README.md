@@ -1,6 +1,6 @@
 # MongoDB Masterclass Laboratory
 
-Welcome to the **MongoDB Masterclass Repository**. This project contains a comprehensive, 22-laboratory curriculum designed to take you from a basic understanding of documents to an enterprise-grade mastery of NoSQL schema design, the Aggregation Framework, Node.js/Java Integration, and High Availability distributed clusters.
+Welcome to the **MongoDB Masterclass Repository**. This project contains a comprehensive, 25-laboratory curriculum designed to take you from a basic understanding of documents to an enterprise-grade mastery of NoSQL schema design, the Aggregation Framework, Node.js/Java Integration, and High Availability distributed clusters.
 
 ## 🧠 Educational Approach
 
