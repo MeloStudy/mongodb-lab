@@ -3,6 +3,9 @@
 # Central router Makefile
 # Use it like: make test LAB=001
 
+# Shell configuration for Windows compatibility
+PWSH = powershell -ExecutionPolicy Bypass -Command
+
 help:
 	@echo "MongoDB Masterclass Laboratory - CLI Tool"
 	@echo "------------------------------------------"
@@ -14,25 +17,26 @@ help:
 	@echo ""
 	@echo "Example: make setup LAB=007"
 
-setup:
-	@if [ -z "$(LAB)" ]; then echo "Error: You must specify the laboratory (e.g., make setup LAB=007)"; exit 1; fi
+check-lab:
+ifndef LAB
+	$(error Error: You must specify the laboratory (e.g., make setup LAB=007))
+endif
+
+setup: check-lab
 	@echo "=> Spinning up container for LAB-$(LAB)..."
-	@cd labs/$(LAB)-* && docker-compose up -d
+	@$(PWSH) "$$labDir = Get-ChildItem -Path labs -Filter '$(LAB)-*' | Select-Object -ExpandProperty FullName; cd $$labDir; docker-compose up -d"
 	@echo "=> Container is ready."
 
-test:
-	@if [ -z "$(LAB)" ]; then echo "Error: You must specify the laboratory (e.g., make test LAB=007)"; exit 1; fi
+test: check-lab
 	@echo "=> Running tests for LAB-$(LAB)..."
-	@# We use the folder path as the workspace identifier. The shell expansion handles the wildcard.
-	npm test --workspace=labs/$(LAB)-*
+	@$(PWSH) "$$labDir = Get-ChildItem -Path labs -Filter '$(LAB)-*' | Select-Object -ExpandProperty FullName; npm test --workspace=$$labDir"
 
-clean:
-	@if [ -z "$(LAB)" ]; then echo "Error: You must specify the laboratory (e.g., make clean LAB=007)"; exit 1; fi
-	@echo "=> Tearing down LAB-$(LAB) environment..."
-	@cd labs/$(LAB)-* && docker-compose down -v
+clean: check-lab
+	@echo "=> Tearing down LAB-$(LAB)..."
+	@$(PWSH) "$$labDir = Get-ChildItem -Path labs -Filter '$(LAB)-*' | Select-Object -ExpandProperty FullName; cd $$labDir; docker-compose down -v --remove-orphans"
+	@echo "=> Environment cleaned."
 
 clean-all:
-	@echo "=> WARNING: Tearing down all running containers across all labs..."
-	@# Stops all containers starting with mongodb_lab_
-	@docker ps -a -q -f name="mongodb_lab_" | xargs -r docker rm -f
-	@echo "=> Containers stopped and removed."
+	@echo "=> EMERGENCY: Cleaning all lab containers..."
+	@$(PWSH) "docker ps -a --filter 'name=mongodb_lab' -q | ForEach-Object { docker stop $$_; docker rm $$_ }"
+	@echo "=> All lab containers stopped and removed."
