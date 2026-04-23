@@ -18,16 +18,16 @@ This repository is built on the **High Friction Learning** principle. Unlike oth
 
 The journey is divided into 8 Progressive Modules. For the full roadmap, see [docs/syllabus.md](docs/syllabus.md).
 
-| Module | focus |
+| Module | Focus |
 | :--- | :--- |
-| **01: Foundations** | Environment, BSON Types, and Server Configuration. |
-| **02: CRUD Mastery** | Advanced Querying, Projections, and Array Surgery. |
-| **03: Specialized Data** | GridFS, Binary Data, and Temporal precision. |
-| **04: Performance** | Indexes, Explain Plans, and Profiling. |
-| **05: Modeling** | Schema Design, Patterns, and Relationships. |
-| **06: Aggregation** | The Pipeline Framework and Data Processing. |
-| **07: Integration** | Node.js Driver, Streams, and Transaction management. |
-| **08: Scale** | Replica Sets, Sharding, and High Availability. |
+| **01: Foundations** | Core Engine, BSON Types, and Server Configuration. |
+| **02: CRUD Mastery** | Advanced Operations, Write Concerns, and Specialized Data (GridFS). |
+| **03: Schema Design** | Relationships, Advanced Patterns, and Schema Evolution/Versioning. |
+| **04: Performance** | Core Indexing (ESR), Geospatial, and Atlas Search. |
+| **05: Aggregation** | The Pipeline Framework, Analytics, and Data Transformations. |
+| **06: Security** | Authentication, RBAC, and Encryption at Rest. |
+| **07: Integration** | Java/Node Drivers, Real-time Change Streams, and ACID Transactions. |
+| **08: Scale** | Replica Sets, Sharding, and Cloud-Native Atlas. |
 
 ---
 

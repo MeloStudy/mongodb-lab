@@ -43,71 +43,80 @@ Focus: Leaving relational habits behind. Intelligent Structuring and Data Integr
 - [ ] **LAB-010: Modeling Patterns (N:N & Advanced)**
   - Concepts: **Extended Reference**, **Subset Pattern** (handling large arrays).
   - Status: *Planned*
-- [ ] **LAB-011: Time-Series & High-Density Modeling**
+- [ ] **LAB-011: Schema Evolution & Versioning**
+  - Concepts: **Schema Versioning Pattern**, Handling Polymorphic data, and **Lazy vs Eager Migration** strategies.
+  - Status: *Planned*
+- [ ] **LAB-012: Time-Series & High-Density Modeling**
   - Concepts: **Native Time-Series Collections**, Bucket Pattern, and Granularity control (seconds/minutes/hours).
   - Status: *Planned*
-- [ ] **LAB-012: DBA Wrap-up: Schema Validation**
+- [ ] **LAB-013: DBA Wrap-up: Schema Validation**
   - Concepts: `$jsonSchema` implementation, `validationAction` (warn vs error), `validationLevel`.
   - Status: *Planned*
 
 ## Module 4: Performance, Indices & Spatial Data
 Focus: Making queries fast and working with location data.
 
-- [ ] **LAB-013: Core Indexing & ESR Rule**
-  - Concepts: Compound Indexes, **ESR Rule** (Equality, Sort, Range), TTL Indexes, Text Indexes, Covered Queries.
+- [ ] **LAB-014: Core Indexing & ESR Rule**
+  - Concepts: Compound Indexes, **ESR Rule** (Equality, Sort, Range), **TTL Indexes (Data Lifecycle)**, Covered Queries.
   - Status: *Planned*
-- [ ] **LAB-014: Geospatial Data**
+- [ ] **LAB-015: Geospatial Data**
   - Concepts: GeoJSON objects, `2dsphere` indexes, `$near`, `$geoWithin`, Proximity and Polygon queries.
   - Status: *Planned*
-- [ ] **LAB-015: DBA Wrap-up: Query Planning**
+- [ ] **LAB-016: Advanced Search: Atlas Search**
+  - Concepts: Full-text search (Lucene engine), Analyzers, Fuzzy Search, Autocomplete, and Scoring.
+  - Status: *Planned*
+- [ ] **LAB-017: DBA Wrap-up: Query Planning**
   - Concepts: Analyzing `explain()` output, `winningPlan` vs `rejectedPlans`, `IXSCAN` vs `COLLSCAN` detection.
   - Status: *Planned*
 
 ## Module 5: The Aggregation Framework
 Focus: Complex data transformations and analytics pipelines.
 
-- [ ] **LAB-016: Pipeline Fundamentals**
+- [ ] **LAB-018: Pipeline Fundamentals**
   - Concepts: `$match`, `$group`, `$project`, `$addFields`, `$unwind`, `$sort`, `$limit`.
   - Status: *Planned*
-- [ ] **LAB-017: Advanced Analytics Stages**
+- [ ] **LAB-019: Advanced Analytics Stages**
   - Concepts: `$lookup` (Left Outer Join), `$graphLookup` (Recursive), `$facet` (Categorization), `$out` & `$merge`.
   - Status: *Planned*
 
 ## Module 6: Security & Administration
 Focus: Protecting data and securing the server.
 
-- [ ] **LAB-018: Authentication & RBAC**
+- [ ] **LAB-020: Authentication & RBAC**
   - Concepts: Creating Users, Built-in Roles, Custom Roles, Scoping access by database.
   - Status: *Planned*
-- [ ] **LAB-019: DBA Wrap-up: Encryption & Network Security**
+- [ ] **LAB-021: DBA Wrap-up: Encryption & Network Security**
   - Concepts: Enabling Auth in `mongod.conf`, Keyfiles, SSL/TLS, Encryption at Rest (WiredTiger).
   - Status: *Planned*
 
 ## Module 7: Enterprise Integration & Transactions
-Focus: Bridging the database with Java (Spring Boot) and managing ACID.
+Focus: Bridging the database with modern application architectures.
 
-- [ ] **LAB-020: Java Enterprise: Spring Data MongoDB**
+- [ ] **LAB-022: Java Enterprise: Spring Data MongoDB**
   - Concepts: `MongoRepository` vs `MongoTemplate`, Custom Conversions, `Optimistic Locking` (@Version).
   - Status: *Planned*
-- [ ] **LAB-021: Secondary Languages Integration**
+- [ ] **LAB-023: Secondary Languages Integration**
   - Concepts: Node.js Native Driver vs Mongoose (Middleware, Virtuals, Schemas).
   - Status: *Planned*
-- [ ] **LAB-022: ACID Transactions**
+- [ ] **LAB-024: Real-time Data: Change Streams & Triggers**
+  - Concepts: **Change Streams**, Resuming streams, Pre/Post images, and Atlas Triggers.
+  - Status: *Planned*
+- [ ] **LAB-025: ACID Transactions**
   - Concepts: Multi-document transactions, `ClientSession`, `withTransaction()` pattern in Java/Node.
   - Status: *Planned*
 
 ## Module 8: High Availability & Scaling
 Focus: Beyond local containers into production-grade clusters.
 
-- [ ] **LAB-023: Replica Sets & Elections**
+- [ ] **LAB-026: Replica Sets & Elections**
   - Concepts: P-S-S architecture, Election mechanics, Priority, Hidden Members, Arbiter.
   - Status: *Planned*
-- [ ] **LAB-024: Scaling with Sharding**
+- [ ] **LAB-027: Scaling with Sharding**
   - Concepts: Shard Keys selection, Mongos Router, Config Servers, Chunk migration.
   - Status: *Planned*
-- [ ] **LAB-025: Cloud-Native Atlas & Realm**
-  - Concepts: Cluster provisioning, IP Access Lists, Database Triggers, Serverless Functions.
+- [ ] **LAB-028: Cloud-Native Atlas**
+  - Concepts: Cluster provisioning, IP Access Lists, Online Archive, Serverless Functions.
   - Status: *Planned*
 
 ---
-**Version**: 0.5.0 | **Author**: MongoDB Lab Engineer
+**Version**: 0.6.0 | **Author**: MongoDB Lab Engineer
