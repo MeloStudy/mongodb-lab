@@ -9,7 +9,7 @@ Focus: Understanding the ecosystem, basic connection, and how MongoDB stores dat
   - Concepts: Basic concepts, Ecosystem, Installation (Docker), Shell vs Drivers.
   - Status: *Completed*
 - [x] **LAB-002: BSON & Data Types**
-  - Concepts: JSON vs BSON. Int32, Int64, Doubles and Decimal128 (Financial Precision).
+  - Concepts: JSON vs BSON. **ObjectId Anatomy**, Int32, Int64, Doubles, and Decimal128 (Financial Precision).
   - Status: *Completed*
 - [x] **LAB-003: DevOps Wrap-up: Shell & Server Config**
   - Concepts: Advanced Node configuration, `dbpath`, `logpath`, Configuration files (`.conf`).

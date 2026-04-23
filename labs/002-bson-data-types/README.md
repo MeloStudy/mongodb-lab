@@ -73,7 +73,19 @@ It's time to build the exact same entity, but using a Javascript application bac
    node driver.js
    ```
 
-## Phase 4: Validation (TDD)
+## Phase 4: Understanding the Identity (ObjectId)
+
+Every document has an `_id`. By default, it's an `ObjectId`. One of its "superpowers" is that it embeds a timestamp.
+
+1. Open `mongosh` again.
+2. Find your invoice and use the `.getTimestamp()` method on the `_id`:
+   ```javascript
+   const doc = db.invoices.findOne({ source: "CLI" })
+   doc._id.getTimestamp()
+   ```
+3. Observe how it returns the exact moment the document was created without needing a `createdAt` field!
+
+## Phase 5: Validation (TDD)
 
 Execute our strict testing suite. Our engine will explicitly query the underlying database via `$type` to ensure you successfully overrode native JavaScript types and generated secure BSON structure.
 
@@ -81,7 +93,7 @@ Execute our strict testing suite. Our engine will explicitly query the underlyin
 npm test
 ```
 
-## Phase 5: Atomic Cleanup
+## Phase 6: Atomic Cleanup
 
 Destroy the active workspace.
 ```bash

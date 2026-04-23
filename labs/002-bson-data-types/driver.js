@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 // Ensure to demand BSON native wrapper classes from the driver package
-const { Decimal128, Int32, Binary } = require('mongodb');
+const { Decimal128, Int32, Binary, ObjectId } = require('mongodb');
 
 const url = 'mongodb://localhost:27017';
 const client = new MongoClient(url);
@@ -24,12 +24,17 @@ async function main() {
     
     // 3. Insert the document
     // Write insertion code wrapping the explicit types in the document:
-    await collection.insertOne({ 
+    const result = await collection.insertOne({ 
       source: "Driver",
       price: explicitPrice,
       sizeInBytes: explicitSize,
       internalFile: explicitBinary
     });
+
+    // 4. ObjectId "Superpower": Extract timestamp
+    const insertedId = result.insertedId;
+    console.log(`Document inserted with ID: ${insertedId}`);
+    console.log(`Extraction - Creation Time: ${insertedId.getTimestamp()}`);
 
   } catch (error) {
     console.error('An error occurred:', error);

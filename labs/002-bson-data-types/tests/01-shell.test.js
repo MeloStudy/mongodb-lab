@@ -22,6 +22,7 @@ describe('Scenario 1: BSON Mappings in mongosh', () => {
     // If they correctly used `{ price: NumberDecimal("100.99") }`, it returns as a 'decimal'.
     const document = await collection.findOne({
       source: "CLI",
+      _id: { $type: "objectId" },        // Ensure default identity was used
       price: { $type: "decimal" },       // BSON alias for Decimal128
       sizeInBytes: { $type: "int" },     // BSON alias for Int32
       internalFile: { $type: "binData" } // BSON alias for Binary

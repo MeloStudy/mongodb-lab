@@ -21,6 +21,17 @@ When interacting with MongoDB, we must **explicitly** tell it to map numbers int
 - **`Long`** (`NumberLong` in mongosh): A 64-bit integer, used for massive numbers (like timestamps or huge telemetry IDs).
 - **`Decimal128`** (`NumberDecimal` in mongosh): A high-precision 128-bit decimal value. **CRITICAL for financial data, prices, and precise science.**
 
+### The Identity: `ObjectId`
+Every document in MongoDB requires a unique `_id` field. By default, MongoDB assigns an `ObjectId`. It is a **12-byte** unique identifier composed of:
+1. **Timestamp (4 bytes)**: Represents the seconds since the Unix epoch. This means ObjectIds are *roughly* sorted by time.
+2. **Random Value (5 bytes)**: Generated once per process to ensure uniqueness across different machines.
+3. **Counter (3 bytes)**: An incrementing value starting with a random value.
+
+**Why use ObjectIds?** 
+- They are smaller than UUIDs (12 bytes vs 16 bytes).
+- You can extract the creation time directly from them without storing a `created_at` field.
+- They are generated client-side by drivers, avoiding server-side bottlenecks.
+
 ### The Reality of BinData (Binary Data)
 MongoDB can also store raw bytes natively using the `BinData` type. 
 This allows you to store:
