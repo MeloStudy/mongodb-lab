@@ -5,6 +5,8 @@ const { MongoClient, UUID } = require('mongodb');
  * 
  * This test suite validates that the student has successfully performed 
  * surgical and bulk deletions (DML operations).
+ * 
+ * IMPORTANT: This test MUST be run BEFORE dropping the collection or database.
  */
 describe('Scenario 1: Surgical & Bulk Deletion (DML)', () => {
   let client;
@@ -19,6 +21,14 @@ describe('Scenario 1: Surgical & Bulk Deletion (DML)', () => {
 
   afterAll(async () => {
     await client.close();
+  });
+
+  test('Should have the "factory" collection available', async () => {
+    const collections = await db.listCollections({ name: 'factory' }).toArray();
+    if (collections.length === 0) {
+      throw new Error("CRITICAL: Collection 'factory' not found. Ensure you have seeded the data and HAVE NOT dropped the collection yet.");
+    }
+    expect(collections.length).toBe(1);
   });
 
   test('Should have removed the malfunctioning probe specifically by ID', async () => {

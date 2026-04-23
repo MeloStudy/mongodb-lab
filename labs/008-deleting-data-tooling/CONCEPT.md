@@ -31,7 +31,7 @@ Removes the entire database and all its collections. This is the ultimate cleanu
 ## 3. MongoDB Compass: The Visual Powerhouse
 
 While the shell is fast, **MongoDB Compass** provides a graphical interface for:
-- **Schema Discovery**: Instantly see field types, data distributions, and outliers.
+- **Schema Discovery**: Instantly see field types, data distributions, and outliers. This is crucial in MongoDB's "Schema-Flexible" environment where documents in the same collection might have different fields or types.
 - **Visual Explain Plan**: Understand how MongoDB executes a query through a visual tree instead of a large JSON blob.
 - **CRUD Interaction**: Filter and edit documents with a visual query builder.
 

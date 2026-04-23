@@ -25,6 +25,9 @@ describe('Scenario 2: Collection & Database Destruction (DDL)', () => {
     // VALIDATION: We list collections with a specific filter.
     // If the collection was dropped using db.factory.drop(), it should not appear here.
     const collections = await db.listCollections({ name: 'factory' }).toArray();
+    
+    // If this test runs but the DB was dropped, it will also be empty, which is fine 
+    // but the specific drop collection command is what we want to verify.
     expect(collections.length).toBe(0);
   });
 
