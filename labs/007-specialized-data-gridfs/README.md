@@ -132,7 +132,7 @@ db.signatures.insertOne({
 > [!NOTE]
 > Notice the `0` in `new Binary(..., 0)`. This explicitly sets the BSON subtype to Generic. If you don't specify it, MongoDB defaults to 0.
 
-Para verificar que este binario es de **Subtipo 0 (Generic)**:
+To verify that this binary is of **Subtype 0 (Generic)**:
 
 ```javascript
 const sig = db.signatures.findOne({ owner: "monge_engineer" });
@@ -140,7 +140,7 @@ EJSON.stringify(sig, { relaxed: false })
 ```
 
 > [!TIP]
-> Verás `"subType": "00"` en el campo `data`. Este es el valor por defecto para la mayoría de los blobs binarios que no son UUIDs ni hashes MD5.
+> You will see `"subType": "00"` in the `data` field. This is the default value for most binary blobs that are not UUIDs or MD5 hashes.
 
 ---
 
