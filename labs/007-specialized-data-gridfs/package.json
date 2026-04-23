@@ -1,0 +1,9 @@
+{
+  "name": "lab-007-specialized-data-gridfs",
+  "version": "1.0.0",
+  "description": "Learning Specialized Data Types & GridFS in MongoDB",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}
