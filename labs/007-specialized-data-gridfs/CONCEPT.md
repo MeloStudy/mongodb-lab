@@ -16,7 +16,7 @@ GridFS doesn't store the file in one piece. It divides the file into chunks:
 
 When you query a file via GridFS, the driver automatically reassembles the chunks into a stream for your application.
 
-## 2. BSON: Beyond JSON
+## 2. BSON: Binary JSON
 
 MongoDB uses **BSON** (Binary JSON), which extends standard JSON types with specialized ones like `Date`, `Decimal128`, `ObjectId`, and `BinData`.
 
