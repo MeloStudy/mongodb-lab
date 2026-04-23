@@ -1,20 +1,20 @@
 # Tasks: LAB-008 Deleting Data & Tooling
 
-- [ ] **Infrastructure**
-  - [ ] Create `labs/008-deleting-data-tooling` directory.
-  - [ ] Initialize `package.json` and `docker-compose.yml`.
-  - [ ] Add standard `Makefile`.
+- [x] **Infrastructure**
+  - [x] Create `labs/008-deleting-data-tooling` directory.
+  - [x] Initialize `package.json` and `docker-compose.yml`.
+  - [x] Add standard `Makefile`.
 
-- [ ] **Lab Content**
-  - [ ] Create `generate-dirty-data.js` seeder.
-  - [ ] Implement `CONCEPT.md` with DML vs DDL comparison.
-  - [ ] Implement `README.md` with Compass connection guide.
+- [x] **Lab Content**
+  - [x] Create `generate-dirty-data.js` seeder.
+  - [x] Implement `CONCEPT.md` with DML vs DDL comparison.
+  - [x] Implement `README.md` with Compass connection guide.
 
-- [ ] **Validation Suite**
-  - [ ] Implement `tests/01-delete-ops.test.js`.
-  - [ ] Implement `tests/02-ddl-ops.test.js`.
+- [x] **Validation Suite**
+  - [x] Implement `tests/01-delete-ops.test.js`.
+  - [x] Implement `tests/02-ddl-ops.test.js`.
 
-- [ ] **Final Review**
-  - [ ] Verify all tests pass with a reference solution.
-  - [ ] Ensure no unused imports.
-  - [ ] Update central `syllabus.md` status.
+- [x] **Final Review**
+  - [x] Verify all tests pass with a reference solution.
+  - [x] Ensure no unused imports.
+  - [x] Update central `syllabus.md` status.

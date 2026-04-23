@@ -1,0 +1,9 @@
+{
+  "name": "lab-008-deleting-data-tooling",
+  "version": "1.0.0",
+  "description": "Mastering Deletion Operations and Tooling in MongoDB",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}

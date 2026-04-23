@@ -30,9 +30,9 @@ Focus: Mastering Create, Read, Update, and Delete operations at a granular level
 - [x] **LAB-007: Specialized Data & GridFS**
   - Concepts: Handling large files (>16MB) with **GridFS**, Binary Subtypes, **UUIDs**, and complex Date vs Timestamp management.
   - Status: *Completed*
-- [ ] **LAB-008: Deleting Data & Tooling**
+- [x] **LAB-008: Deleting Data & Tooling**
   - Concepts: `deleteOne`, `deleteMany`, `drop()`, `dropDatabase()`. GUI Exploration: **MongoDB Compass** (Schema Discovery, Visual Explain Plan).
-  - Status: *Planned*
+  - Status: *Completed*
 
 ## Module 3: Schema Design & Relationships
 Focus: Leaving relational habits behind. Intelligent Structuring and Data Integrity.

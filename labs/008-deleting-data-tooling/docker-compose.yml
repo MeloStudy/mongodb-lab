@@ -1,0 +1,11 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb_lab_008
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
