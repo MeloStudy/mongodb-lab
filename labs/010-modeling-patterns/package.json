@@ -1,0 +1,10 @@
+{
+  "name": "010-modeling-patterns",
+  "version": "1.0.0",
+  "description": "Advanced Modeling Patterns: Extended Reference and Subset Pattern",
+  "scripts": {
+    "test": "jest --testPathIgnorePatterns=03-optional-challenges.test.js",
+    "test:optional": "jest tests/03-optional-challenges.test.js",
+    "test:watch": "jest --watch"
+  }
+}

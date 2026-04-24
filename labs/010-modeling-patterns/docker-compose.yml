@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb_lab_010
+    ports:
+      - "27017:27017"
+    environment:
+      # Disabling auth for local educational environments until Security Module
+      MONGO_INITDB_DATABASE: lab_db
+    volumes:
+      # Mounting seed data for the Subset Pattern
+      - ./init:/docker-entrypoint-initdb.d

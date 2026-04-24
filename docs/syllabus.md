@@ -40,9 +40,9 @@ Focus: Leaving relational habits behind. Intelligent Structuring and Data Integr
 - [x] **LAB-009: Document Structuring (1:1, 1:N)**
   - Concepts: **Data Types Choice & Impact** (Storage optimization). Embedding vs Referencing decision matrix. "One-to-Few" vs "One-to-Many".
   - Status: *Completed*
-- [ ] **LAB-010: Modeling Patterns (N:N & Advanced)**
+- [x] **LAB-010: Modeling Patterns (N:N & Advanced)**
   - Concepts: **Extended Reference**, **Subset Pattern** (handling large arrays).
-  - Status: *Planned*
+  - Status: *Completed*
 - [ ] **LAB-011: Schema Evolution & Versioning**
   - Concepts: **Schema Versioning Pattern**, Handling Polymorphic data, and **Lazy vs Eager Migration** strategies.
   - Status: *Planned*
