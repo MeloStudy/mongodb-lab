@@ -1,0 +1,9 @@
+{
+  "name": "009-document-structuring",
+  "version": "1.0.0",
+  "description": "Document Structuring (Embedding vs Referencing)",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}

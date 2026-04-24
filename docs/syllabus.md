@@ -37,9 +37,9 @@ Focus: Mastering Create, Read, Update, and Delete operations at a granular level
 ## Module 3: Schema Design & Relationships
 Focus: Leaving relational habits behind. Intelligent Structuring and Data Integrity.
 
-- [ ] **LAB-009: Document Structuring (1:1, 1:N)**
+- [x] **LAB-009: Document Structuring (1:1, 1:N)**
   - Concepts: **Data Types Choice & Impact** (Storage optimization). Embedding vs Referencing decision matrix. "One-to-Few" vs "One-to-Many".
-  - Status: *Planned*
+  - Status: *Completed*
 - [ ] **LAB-010: Modeling Patterns (N:N & Advanced)**
   - Concepts: **Extended Reference**, **Subset Pattern** (handling large arrays).
   - Status: *Planned*
