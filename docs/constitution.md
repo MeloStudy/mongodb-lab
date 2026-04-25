@@ -26,6 +26,7 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 - **Data Seeding**: When a lab requires pre-existing data for querying (e.g., Aggregations), provide explicit native commands to mount init scripts or import datasets.
 - **Command Dissection**: Every README must include a mapping of CLI flags and arguments for new tools introduced. Complex flags (like `--format` templates or nested query options) MUST be dissected.
 - **Theoretical Foundation**: Every lab folder MUST contain a `CONCEPT.md` file explaining the core technical concepts.
+- **Conceptual Gap Audit**: Before delivery, the `CONCEPT.md` MUST be audited to ensure no "orphan concepts" exist (e.g., using an operator in the README that wasn't explained in the theory). If a gap is found, a "Crash Course" section must be added.
 - **Code Documentation**: All testing scripts (`.js` or `.java`) MUST include comments explaining what each step validates.
 - **Makefile Standard (Optional)**: Makefiles are strictly intended as **optional** alternative wrappers holding the raw native commands as shortcuts for CI or advanced users. The lab must function perfectly without `make`.
 - **Atomic Cleanup**: Every lab MUST provide instructions in the `README.md` that restore the environment to a "Not Provisioned" state by removing all associated resources (Containers, Volumes, Networks) using native commands. This ensures absolute idempotence.
@@ -42,6 +43,7 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 
 ### Always Do
 - Write a `spec.md`, `plan.md`, and `tasks.md` before implementing a new lab.
+- Perform a **Conceptual Gap Audit** on the `CONCEPT.md` and `README.md` before finalizing.
 - Update `tasks.md` and the central `syllabus.md` after finalizing a lab's implementation.
 - Ensure all labs pass their corresponding validation tests (e.g., `npm test`, `mvn test`) before committing.
 - Follow the `XXX-slug` naming convention.
@@ -63,4 +65,4 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 - **Version Control**: Changes to the curriculum or core principles require a MINOR version bump.
 - **Quality Gates**: New labs MUST pass all validation tests and be reviewed for educational clarity before being added to the syllabus.
 
-**Version**: 0.1.0 | **Ratified**: [Current Date]
+**Version**: 0.2.0 | **Ratified**: 2026-04-25
