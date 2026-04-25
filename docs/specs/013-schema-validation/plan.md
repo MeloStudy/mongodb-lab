@@ -42,4 +42,4 @@ The learner will implement a "Security & Integrity" layer for a user management 
 - [x] Language used across all text is explicitly English.
 
 ## Open Questions
-- Should we include a complex BSON type like `decimal128` to reinforce LAB-002 knowledge? (Yes, for the `balance` field if we add one).
+- **Decided**: We WILL include `decimal128` for the `balance` field. This reinforces the "Financial Precision" concept from LAB-002 and demonstrates how `$jsonSchema` can enforce specific BSON types that are often confused (like Double vs Decimal128).

@@ -18,13 +18,13 @@
 
 ### Scenario 1 - Strict Schema Enforcement (Priority: P1)
 
-The learner will create a `users` collection with a strict `$jsonSchema` requiring specific fields (`username`, `email`, `age`) with correct BSON types.
+The learner will create a `users` collection with a strict `$jsonSchema` requiring specific fields (`username`, `email`, `age`, `balance`) with correct BSON types. Specifically, `balance` must be a **Decimal128** to ensure financial precision, reinforcing concepts from LAB-002.
 
 **Validation (Automated Test)**: Jest test will attempt to insert a document missing a required field and expect a `MongoServerError` with code 121 (DocumentValidationFailure). Then it will insert a valid document and expect success.
 
 **Acceptance Scenarios**:
 
-1. **Given** a non-existent `users` collection, **When** the learner creates it with `$jsonSchema`, **Then** inserting `{ "username": "alpha" }` fails due to missing `email`.
+1. **Given** a non-existent `users` collection, **When** the learner creates it with `$jsonSchema`, **Then** inserting `{ "username": "alpha" }` fails due to missing `email`, and inserting `{ "username": "alpha", "email": "a@b.com", "age": 25, "balance": 100.50 }` fails because `100.50` is a double, not a **Decimal128**.
 
 ---
 
