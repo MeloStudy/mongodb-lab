@@ -1,0 +1,9 @@
+{
+  "name": "011-schema-evolution",
+  "version": "1.0.0",
+  "description": "Schema Evolution Pattern: Lazy and Eager Migration Strategies",
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch"
+  }
+}
