@@ -20,6 +20,7 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 
 ## Lab Design Standards
 
+- **Spec Planning**: The mandatory initial phase of any laboratory development. It involves the generation of three base artifacts: `spec.md` (educational requirements), `plan.md` (implementation strategy), and `tasks.md` (step-by-step execution tracker). No implementation work should begin before these artifacts are reviewed and stored in the `/docs/specs/XXX-slug/` directory.
 - **Naming Convention**: All labs must follow the `XXX-slug-name` format (e.g., `001-crud-basics`).
 - **Setup & Cleanup Native Execution**: Scripts like `setup.sh` and `reset.sh` are **PROHIBITED** to prevent "magic button" abstraction. The lab's `README.md` MUST explicitly guide the user to execute the underlying native tools (e.g., `docker-compose up -d`, `npm test`) so they learn the technology actively.
 - **Monorepo Architecture**: Node.js and Java libraries are managed centrally at the repository root (e.g., via NPM Workspaces). Individual labs should act as sub-modules to prevent dependency bloat.
@@ -42,7 +43,7 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 ## Agent Boundaries
 
 ### Always Do
-- Write a `spec.md`, `plan.md`, and `tasks.md` before implementing a new lab.
+- Perform **Spec Planning** (generation of `spec.md`, `plan.md`, and `tasks.md`) before implementing a new lab.
 - Perform a **Conceptual Gap Audit** on the `CONCEPT.md` and `README.md` before finalizing.
 - Update `tasks.md` and the central `syllabus.md` after finalizing a lab's implementation.
 - Ensure all labs pass their corresponding validation tests (e.g., `npm test`, `mvn test`) before committing.
@@ -65,4 +66,5 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 - **Version Control**: Changes to the curriculum or core principles require a MINOR version bump.
 - **Quality Gates**: New labs MUST pass all validation tests and be reviewed for educational clarity before being added to the syllabus.
 
-**Version**: 0.2.0 | **Ratified**: 2026-04-25
+**Version**: 0.3.0 | **Ratified**: 2026-04-25
+
