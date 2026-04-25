@@ -46,9 +46,9 @@ Focus: Leaving relational habits behind. Intelligent Structuring and Data Integr
 - [x] **LAB-011: Schema Evolution & Versioning**
   - Concepts: **Schema Versioning Pattern**, Handling Polymorphic data, and **Lazy vs Eager Migration** strategies.
   - Status: *Completed*
-- [ ] **LAB-012: Time-Series & High-Density Modeling**
+- [x] **LAB-012: Time-Series & High-Density Modeling**
   - Concepts: **Native Time-Series Collections**, Bucket Pattern, and Granularity control (seconds/minutes/hours).
-  - Status: *Planned*
+  - Status: *Completed*
 - [ ] **LAB-013: DBA Wrap-up: Schema Validation**
   - Concepts: `$jsonSchema` implementation, `validationAction` (warn vs error), `validationLevel`.
   - Status: *Planned*

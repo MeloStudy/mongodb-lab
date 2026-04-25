@@ -1,0 +1,9 @@
+{
+  "name": "012-time-series",
+  "version": "1.0.0",
+  "description": "Native Time-Series Collections & High-Density Modeling",
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch"
+  }
+}

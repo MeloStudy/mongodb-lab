@@ -1,0 +1,10 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb_lab_012
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: lab_db
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
