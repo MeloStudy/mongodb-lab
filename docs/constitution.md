@@ -73,18 +73,25 @@ To ensure quality and consistency, every laboratory must progress through the fo
 
 ## Workflow Automation
 
-The laboratory uses specialized Agent Workflows to automate quality gates. These are invoked via `/` commands:
+The laboratory uses specialized Agent Workflows to automate quality gates and implementation phases. These are invoked via `/` commands:
 
-- **`/lab-architect`**: Validates planning (Transition to `READY`).
-- **`/lab-builder`**: Executes implementation and TDD.
-- **`/lab-auditor`**: Performs pedagogical gap audit (Transition to `AUDITED`).
-- **`/lab-governor`**: Manages global changes and constitutional integrity.
+- **`/lab-init`**: Initiates a new lab by generating the initial `DRAFT` artifacts and folder structure.
+- **`/lab-architect`**: Refines and validates planning, moving the lab from `DRAFT`/`PLANNED` to `READY`.
+- **`/lab-builder`**: Executes the technical implementation (TDD, coding, and docs) for `READY` labs.
+- **`/lab-auditor`**: Performs the final pedagogical gap audit and moves the lab to `AUDITED`.
+- **`/lab-governor`**: Manages global changes to the Constitution and ensures cross-lab consistency.
+
+### Master Workflows
+
+For efficiency, multiple phases can be combined using macro-workflows:
+- **`/lab-master-plan`**: Covers the entire design phase (Init + Architect).
+- **`/lab-master-build`**: Covers the entire execution phase (Builder + Auditor).
+
+For a visual guide of the process, refer to `docs/LAB_LIFECYCLE.md`.
 
 ## Governance
 
 - **Version Control**: Changes to the curriculum or core principles require a MINOR version bump.
 - **Quality Gates**: New labs MUST pass all validation tests and be reviewed for educational clarity before being added to the syllabus.
 
-**Version**: 0.5.0 | **Ratified**: 2026-04-26
-
-
+**Version**: 0.5.2 | **Ratified**: 2026-04-26

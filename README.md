@@ -76,10 +76,17 @@ From the root directory, you can use these shortcuts:
 
 If you are using an AI coding assistant (like Antigravity), this repository includes native **Agent Workflows** to automate quality gates and implementation steps. These are invoked via `/` commands:
 
--   **/lab-architect**: Validates the planning artifacts (`spec`, `plan`, `tasks`). Use this to move a lab to `READY` status.
+-   **/lab-init**: Initiates a new laboratory by generating `DRAFT` artifacts and folder structure.
+-   **/lab-architect**: Validates planning artifacts (`spec`, `plan`, `tasks`). Moves a lab to `READY` status.
 -   **/lab-builder**: Automates the technical implementation (TDD, scaffolding, and docs) based on an approved plan.
 -   **/lab-auditor**: Performs a final pedagogical review to detect conceptual gaps before marking a lab as `Completed`.
 -   **/lab-governor**: Manages global changes to the [Constitution](docs/constitution.md) and ensures consistency across all labs.
+
+### Master Workflows (Full Cycles)
+-   **/lab-master-plan**: Executes the full design cycle (Init + Architect) to reach `READY` status.
+-   **/lab-master-build**: Executes the full implementation cycle (Builder + Auditor) to reach `AUDITED` status.
+
+For a detailed example of the workflow in action, see [docs/LAB_LIFECYCLE.md](docs/LAB_LIFECYCLE.md).
 
 ---
 
