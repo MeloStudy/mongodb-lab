@@ -30,15 +30,18 @@ This lab focuses on the "Query Performance" aspect of the DBA role. The learner 
 2. **Testing**:
    - `tests/02-compound-esr.test.js`: Verify the exact field order in the compound index and ensure no `SORT` stage appears in the explain plan.
 
-## Phase 4: Scenario 3 & 4 - Sparse & TTL
+## Phase 4: Scenario 3, 4 & 6 - Sparse, TTL & Partial
 1. **Instructional Path (Sparse)**:
    - Identify rarely present `discountCode`.
    - Create index: `db.orders.createIndex({ discountCode: 1 }, { sparse: true })`.
 2. **Instructional Path (TTL)**:
    - Create `sessions` collection.
    - `db.sessions.createIndex({ createdAt: 1 }, { expireAfterSeconds: 60 })`.
-3. **Testing**:
-   - `tests/03-sparse-ttl.test.js`: Verify index properties for both cases.
+3. **Instructional Path (Partial)**:
+   - Introduce `partialFilterExpression`.
+   - Index: `db.users.createIndex({ email: 1 }, { partialFilterExpression: { status: "active" } })`.
+4. **Testing**:
+   - `tests/03-sparse-ttl-partial.test.js`: Verify index properties for all three cases.
 
 ## Phase 5: Scenario 5 - Covered Queries
 1. **Instructional Path**:

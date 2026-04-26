@@ -58,7 +58,7 @@ Focus: Making queries fast and working with location data.
 
 - [ ] **LAB-014: Core Indexing & ESR Rule**
   - Concepts: Compound Indexes, **ESR Rule** (Equality, Sort, Range), **TTL Indexes (Data Lifecycle)**, Covered Queries.
-  - Status: *In Progress (Spec Planning)*
+  - Status: *READY*
 - [ ] **LAB-015: Geospatial Data**
   - Concepts: GeoJSON objects, `2dsphere` indexes, `$near`, `$geoWithin`, Proximity and Polygon queries.
   - Status: *Planned*

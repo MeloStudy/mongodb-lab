@@ -17,7 +17,7 @@
 ## Phase 3: Validation Framework (TDD)
 - [ ] T006 Write `tests/01-basic-indexing.test.js` (COLLSCAN vs IXSCAN).
 - [ ] T007 Write `tests/02-compound-esr.test.js` (Field order and Sort stage audit).
-- [ ] T008 Write `tests/03-sparse-ttl.test.js` (Sparse and TTL logic).
+- [ ] T008 Write `tests/03-sparse-ttl-partial.test.js` (Sparse, TTL, and Partial logic).
 - [ ] T009 Write `tests/04-covered-queries.test.js` (Verify `totalDocsExamined: 0`).
 
 ## Phase 4: Educational Content

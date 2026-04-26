@@ -2,7 +2,7 @@
 
 **Feature Branch**: `014-core-indexing`
 **Created**: 2026-04-25
-**Status**: PLANNED
+**Status**: READY
 **Syllabus Section**: Performance, Indices & Spatial Data
 
 ## Syllabus Alignment *(mandatory)*
@@ -15,6 +15,7 @@
   - LO-003: Implement **Sparse Indexes** to optimize storage for optional fields.
   - LO-004: Understand and implement **TTL (Time-To-Live) Indexes** for automated data expiration.
   - LO-005: Identify **Covered Queries** where the index satisfies the entire query without touching the documents.
+  - LO-006: Implement **Partial Indexes** to optimize indexing for specific data subsets.
 
 ## Interactive Scenarios & Validation *(mandatory)*
 
@@ -58,6 +59,14 @@ The learner will create a `logs` collection where documents automatically disapp
 The learner will execute a projection query that only requests fields present in an existing index. They will verify that `totalDocsExamined` is 0, meaning MongoDB never touched the disk to fetch documents.
 
 **Validation (Automated Test)**: Jest test will run a projected query and verify `explain().executionStats.totalDocsExamined === 0`.
+
+---
+
+### Scenario 6 - Selective Indexing: Partial Indexes (Priority: P2)
+
+The learner will create an index on `email` that only includes documents where `status` is `"active"`. They will verify that a query for an inactive user does NOT use the index, while a query for an active user does.
+
+**Validation (Automated Test)**: Jest test will verify the existence of an index with `partialFilterExpression: { status: "active" }`.
 
 ---
 
