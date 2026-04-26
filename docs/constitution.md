@@ -61,10 +61,30 @@ Each laboratory MUST include solid automated tests to verify the learner's progr
 - Hardcode sensitive credentials in the source code; always use environment variables or `.env` files.
 - Use non-English language in any part of the repository.
 
+## Lab Lifecycle & Statuses
+
+To ensure quality and consistency, every laboratory must progress through the following standardized statuses:
+
+- **`DRAFT`**: Initial specification (`spec.md`) is being drafted. Implementation is not yet planned.
+- **`PLANNED`**: Artifacts (`spec.md`, `plan.md`, `tasks.md`) are created but haven't passed the technical audit.
+- **`READY`**: Planning is validated. No "Open Questions" remain. Tasks are granular. Ready for coding.
+- **`IMPLEMENTED`**: Code, tests, and documentation are complete. Pending final pedagogical audit.
+- **`AUDITED`**: Final quality gate passed. No conceptual gaps. Syllabus updated to *Completed*.
+
+## Workflow Automation
+
+The laboratory uses specialized Agent Workflows to automate quality gates. These are invoked via `/` commands:
+
+- **`/lab-architect`**: Validates planning (Transition to `READY`).
+- **`/lab-builder`**: Executes implementation and TDD.
+- **`/lab-auditor`**: Performs pedagogical gap audit (Transition to `AUDITED`).
+- **`/lab-governor`**: Manages global changes and constitutional integrity.
+
 ## Governance
 
 - **Version Control**: Changes to the curriculum or core principles require a MINOR version bump.
 - **Quality Gates**: New labs MUST pass all validation tests and be reviewed for educational clarity before being added to the syllabus.
 
-**Version**: 0.4.0 | **Ratified**: 2026-04-25
+**Version**: 0.5.0 | **Ratified**: 2026-04-26
+
 
