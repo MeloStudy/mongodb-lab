@@ -49,16 +49,16 @@ Focus: Leaving relational habits behind. Intelligent Structuring and Data Integr
 - [x] **LAB-012: Time-Series & High-Density Modeling**
   - Concepts: **Native Time-Series Collections**, Bucket Pattern, and Granularity control (seconds/minutes/hours).
   - Status: *Completed*
-- [ ] **LAB-013: DBA Wrap-up: Schema Validation**
+- [x] **LAB-013: DBA Wrap-up: Schema Validation**
   - Concepts: `$jsonSchema` implementation, `validationAction` (warn vs error), `validationLevel`.
-  - Status: *Planned*
+  - Status: *Completed*
 
 ## Module 4: Performance, Indices & Spatial Data
 Focus: Making queries fast and working with location data.
 
 - [ ] **LAB-014: Core Indexing & ESR Rule**
   - Concepts: Compound Indexes, **ESR Rule** (Equality, Sort, Range), **TTL Indexes (Data Lifecycle)**, Covered Queries.
-  - Status: *Planned*
+  - Status: *In Progress (Spec Planning)*
 - [ ] **LAB-015: Geospatial Data**
   - Concepts: GeoJSON objects, `2dsphere` indexes, `$near`, `$geoWithin`, Proximity and Polygon queries.
   - Status: *Planned*
