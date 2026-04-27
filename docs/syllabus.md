@@ -59,10 +59,10 @@ Focus: Making queries fast and working with location data.
 - [x] **LAB-014: Core Indexing & ESR Rule**
   - Concepts: Compound Indexes, **ESR Rule** (Equality, Sort, Range), **TTL Indexes (Data Lifecycle)**, Covered Queries.
   - Status: *AUDITED*
-- [ ] **LAB-015: Geospatial Data**
+- [x] **LAB-015: Geospatial Data**
   - Concepts: GeoJSON objects, `2dsphere` indexes, `$near`, `$geoWithin`, Proximity and Polygon queries.
   - Status: *AUDITED*
-- [ ] **LAB-016: Advanced Search: Atlas Search**
+- [x] **LAB-016: Advanced Search: Atlas Search**
   - Concepts: Full-text search (Lucene engine), Analyzers, Fuzzy Search, Autocomplete, and Scoring.
   - Status: *AUDITED*
 - [x] **LAB-017: DBA Wrap-up: Query Planning**
@@ -74,7 +74,7 @@ Focus: Complex data transformations and analytics pipelines.
 
 - [ ] **LAB-018: Pipeline Fundamentals**
   - Concepts: `$match`, `$group`, `$project`, `$addFields`, `$unwind`, `$sort`, `$limit`.
-  - Status: *Planned*
+  - Status: *READY*
 - [ ] **LAB-019: Advanced Analytics Stages**
   - Concepts: `$lookup` (Left Outer Join), `$graphLookup` (Recursive), `$facet` (Categorization), `$out` & `$merge`.
   - Status: *READY*
