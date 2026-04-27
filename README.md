@@ -81,6 +81,7 @@ If you are using an AI coding assistant (like Antigravity), this repository incl
 -   **/lab-builder**: Automates the technical implementation (TDD, scaffolding, and docs) based on an approved plan.
 -   **/lab-auditor**: Performs a final pedagogical review to detect conceptual gaps before marking a lab as `Completed`.
 -   **/lab-governor**: Manages global changes to the [Constitution](docs/constitution.md) and ensures consistency across all labs.
+-   **/lab-refiner**: Retrospectively audits and upgrades an already delivered laboratory to ensure compliance with the latest standards.
 
 ### Master Workflows (Full Cycles)
 -   **/lab-master-plan**: Executes the full design cycle (Init + Architect) to reach `READY` status.

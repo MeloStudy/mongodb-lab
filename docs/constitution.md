@@ -80,6 +80,7 @@ The laboratory uses specialized Agent Workflows to automate quality gates and im
 - **`/lab-builder`**: Executes the technical implementation (TDD, coding, and docs) for `READY` labs.
 - **`/lab-auditor`**: Performs the final pedagogical gap audit and moves the lab to `AUDITED`.
 - **`/lab-governor`**: Manages global changes to the Constitution and ensures cross-lab consistency.
+- **`/lab-refiner`**: Retrospectively audits and upgrades an already delivered laboratory to ensure compliance with the latest standards.
 
 ### Master Workflows
 
