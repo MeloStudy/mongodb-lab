@@ -66,8 +66,8 @@ Focus: Making queries fast and working with location data.
   - Concepts: Full-text search (Lucene engine), Analyzers, Fuzzy Search, Autocomplete, and Scoring.
   - Status: *AUDITED*
 - [ ] **LAB-017: DBA Wrap-up: Query Planning**
-  - Concepts: Analyzing `explain()` output, `winningPlan` vs `rejectedPlans`, `IXSCAN` vs `COLLSCAN` detection.
-  - Status: *Planned*
+  - Concepts: Analyzing `explain()` output, `winningPlan` vs `rejectedPlans`, `IXSCAN` vs `COLLSCAN` detection. **Index Filters**.
+  - Status: *READY*
 
 ## Module 5: The Aggregation Framework
 Focus: Complex data transformations and analytics pipelines.
