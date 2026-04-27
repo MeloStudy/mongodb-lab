@@ -11,7 +11,8 @@ This lab introduces the learner to the Geospatial capabilities of MongoDB. We wi
 1. **Scaffold**: Clone from `labs/000-base-setup/`.
 2. **Workspace Registration**: `@mongodb-lab/015-geospatial-data`.
 3. **Data Requirements**: 
-   - Seed script `init/seed.js` with:
+   - Seed script `init/seed.js` using real-world coordinates centered around **Lima, Peru**.
+   - Generate:
      - A `cafes` collection (Points).
      - A `requests` collection (Points).
 
@@ -40,7 +41,7 @@ This lab introduces the learner to the Geospatial capabilities of MongoDB. We wi
 
 ## Phase 5: Full Documentation & Dissection
 1. **CONCEPT.md**: Spherical geometry, GeoJSON types, and the power of spatial aggregations.
-2. **README.md**: Step-by-step "Masterclass" on geospatial engineering.
+2. **README.md**: Must be an interactive **Pedagogical Walkthrough**. Before executing spatial operators, explain *why* and *how* they work. Dissect `executionStats` and `nReturned` after queries to validate spatial logic.
 3. **Command Dissection**: `$geoNear` options (`distanceMultiplier`, `maxDistance`) and `$geoIntersects`.
 
 ## Constitution Compliance Check

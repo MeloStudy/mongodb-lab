@@ -61,7 +61,7 @@ Focus: Making queries fast and working with location data.
   - Status: *AUDITED*
 - [ ] **LAB-015: Geospatial Data**
   - Concepts: GeoJSON objects, `2dsphere` indexes, `$near`, `$geoWithin`, Proximity and Polygon queries.
-  - Status: *READY*
+  - Status: *AUDITED*
 - [ ] **LAB-016: Advanced Search: Atlas Search**
   - Concepts: Full-text search (Lucene engine), Analyzers, Fuzzy Search, Autocomplete, and Scoring.
   - Status: *Planned*

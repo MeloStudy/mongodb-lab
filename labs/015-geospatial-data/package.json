@@ -1,0 +1,12 @@
+{
+  "name": "@mongodb-lab/015-geospatial-data",
+  "version": "1.0.0",
+  "description": "Base infrastructure validation for MongoDB Labs",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "mongodb": "^7.2.0"
+  }
+}
