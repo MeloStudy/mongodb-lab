@@ -22,7 +22,7 @@
 
 ## Phase 4: Full Documentation & Dissection
 1. Draft the `CONCEPT.md` ensuring a rigorous technical deep-dive into the concepts (internal mechanics, memory, algorithms), prioritizing the engineering "Why" and avoiding superficial definitions.
-2. Draft the `README.md` step-by-step guide enforcing strict **Native Execution** (`docker-compose up -d`) logic.
+2. Draft the `README.md` as an educational walkthrough. Enforce strict **Native Execution** logic (`docker-compose up -d`), but ensure each step explains the rationale before the command and analyzes the result after it.
 3. Apply the **Command Dissection** pattern inside the `README.md` for ANY new CLI flag or MongoSH method introduced.
 
 ## Constitution Compliance Check

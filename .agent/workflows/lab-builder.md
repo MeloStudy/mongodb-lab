@@ -23,7 +23,7 @@ This workflow is triggered when a laboratory is in `READY` status and the user w
    - Perform a manual "Learner Journey" walkthrough.
 
 4. **Final Documentation**:
-   - Generate `README.md` with step-by-step instructions.
+   - Generate `README.md` as a pedagogical walkthrough. Instead of just listing commands, explain the rationale before each execution and analyze the expected output/results afterwards.
    - Generate `CONCEPT.md` providing a rigorous, deep-dive technical explanation. Cover internal database mechanics (e.g., memory usage, B-Trees, computational complexity) to ensure a comprehensive engineering understanding, avoiding superficial definitions.
    - Complete "Command Dissection" tables.
 

@@ -28,4 +28,4 @@ This workflow is triggered when a laboratory is in `IMPLEMENTED` status and need
 
 5. **Certification**:
    - Update the `Status: AUDITED` field in `spec.md`.
-   - Update `syllabus.md` to `Status: Completed`.
+   - Update `syllabus.md` to `Status: AUDITED`.

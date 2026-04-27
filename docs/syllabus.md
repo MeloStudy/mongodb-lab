@@ -7,58 +7,58 @@ Focus: Understanding the ecosystem, basic connection, and how MongoDB stores dat
 
 - [x] **LAB-001: Hello MongoDB**
   - Concepts: Basic concepts, Ecosystem, Installation (Docker), Shell vs Drivers.
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-002: BSON & Data Types**
   - Concepts: JSON vs BSON. **ObjectId Anatomy**, Int32, Int64, Doubles, and Decimal128 (Financial Precision).
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-003: DevOps Wrap-up: Shell & Server Config**
   - Concepts: Advanced Node configuration, `dbpath`, `logpath`, Configuration files (`.conf`).
-  - Status: *Completed*
+  - Status: *AUDITED*
 
 ## Module 2: Complete CRUD Operations
 Focus: Mastering Create, Read, Update, and Delete operations at a granular level.
 
 - [x] **LAB-004: Advanced Inserts & Write Concerns**
   - Concepts: `insertOne`, `insertMany`, Ordered vs Unordered, `writeConcern` (w: "majority", j: true).
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-005: Advanced Queries & Projections**
   - Concepts: Comparison (`$gt`, `$in`), Logical (`$and`, `$or`), Element (`$exists`, `$type`), Array Operators (`$all`, `$elemMatch`, `$size`, `$expr`).
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-006: Updating Data & Array Surgery**
   - Concepts: `$set`, `$inc`, `$mul`, `$rename`, `$unset`, `upsert`, `$setOnInsert`, Positional Operators (`$`, `$[]`, `arrayFilters`).
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-007: Specialized Data & GridFS**
   - Concepts: Handling large files (>16MB) with **GridFS**, Binary Subtypes, **UUIDs**, and complex Date vs Timestamp management.
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-008: Deleting Data & Tooling**
   - Concepts: `deleteOne`, `deleteMany`, `drop()`, `dropDatabase()`. GUI Exploration: **MongoDB Compass** (Schema Discovery, Visual Explain Plan).
-  - Status: *Completed*
+  - Status: *AUDITED*
 
 ## Module 3: Schema Design & Relationships
 Focus: Leaving relational habits behind. Intelligent Structuring and Data Integrity.
 
 - [x] **LAB-009: Document Structuring (1:1, 1:N)**
   - Concepts: **Data Types Choice & Impact** (Storage optimization). Embedding vs Referencing decision matrix. "One-to-Few" vs "One-to-Many".
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-010: Modeling Patterns (N:N & Advanced)**
   - Concepts: **Extended Reference**, **Subset Pattern** (handling large arrays).
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-011: Schema Evolution & Versioning**
   - Concepts: **Schema Versioning Pattern**, Handling Polymorphic data, and **Lazy vs Eager Migration** strategies.
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-012: Time-Series & High-Density Modeling**
   - Concepts: **Native Time-Series Collections**, Bucket Pattern, and Granularity control (seconds/minutes/hours).
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [x] **LAB-013: DBA Wrap-up: Schema Validation**
   - Concepts: `$jsonSchema` implementation, `validationAction` (warn vs error), `validationLevel`.
-  - Status: *Completed*
+  - Status: *AUDITED*
 
 ## Module 4: Performance, Indices & Spatial Data
 Focus: Making queries fast and working with location data.
 
 - [x] **LAB-014: Core Indexing & ESR Rule**
   - Concepts: Compound Indexes, **ESR Rule** (Equality, Sort, Range), **TTL Indexes (Data Lifecycle)**, Covered Queries.
-  - Status: *Completed*
+  - Status: *AUDITED*
 - [ ] **LAB-015: Geospatial Data**
   - Concepts: GeoJSON objects, `2dsphere` indexes, `$near`, `$geoWithin`, Proximity and Polygon queries.
   - Status: *READY*
@@ -116,6 +116,9 @@ Focus: Beyond local containers into production-grade clusters.
   - Status: *Planned*
 - [ ] **LAB-028: Cloud-Native Atlas**
   - Concepts: Cluster provisioning, IP Access Lists, Online Archive, Serverless Functions.
+  - Status: *Planned*
+- [ ] **LAB-029: Data Migration & Logical Backups**
+  - Concepts: BSON vs JSON exports (`mongodump` vs `mongoexport`), `mongorestore`, and point-in-time logical backups.
   - Status: *Planned*
 
 ---
