@@ -64,3 +64,7 @@ This lab focuses on the "Query Performance" aspect of the DBA role. The learner 
 ## Open Questions
 - **Decided**: We WILL include **Sparse Indexes**. This adds value by teaching how to save index space when a field (e.g., `discountCode`) is only present in a fraction of the documents.
 - **Decided**: We WILL use a synthetic dataset of 5,000 orders generated via `init/seed.js` to ensure the learner can observe the impact of index selection on `COLLSCAN` vs `IXSCAN` and the ESR rule.
+
+## Phase 7: Retrospective Refinement (Pedagogical Upgrade)
+- **Trigger**: `/lab-refiner` identified that `README.md` lacked educational depth.
+- **Action**: Rewrite the entire `README.md` to act as an interactive tutorial, explaining the *why* before executing commands and analyzing the `executionStats` after.

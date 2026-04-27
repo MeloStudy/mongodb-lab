@@ -28,3 +28,8 @@
 ## Phase 5: Finalization
 - [ ] T013 Verify Atomic Cleanup (`docker-compose down -v`).
 - [ ] T014 Perform "Learner Journey" walkthrough and verify all tests pass.
+
+## Phase 6: Retrospective Refinement
+- [x] T015 Rewrite Scenario 1 in `README.md` to explain COLLSCAN mechanics.
+- [x] T016 Rewrite Scenario 2 in `README.md` to explain the ESR branch filtering logic.
+- [x] T017 Rewrite Specialized Scenarios to explain RAM/storage benefits before indexing.
