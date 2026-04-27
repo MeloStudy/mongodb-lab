@@ -2,7 +2,7 @@
 
 **Feature Branch**: `017-query-planning`
 **Created**: 2026-04-27
-**Status**: READY
+**Status**: AUDITED
 **Syllabus Section**: Performance, Indices & Spatial Data
 
 ## Syllabus Alignment *(mandatory)*

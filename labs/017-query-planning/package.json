@@ -1,0 +1,9 @@
+{
+  "name": "@mongodb-lab/017-query-planning",
+  "version": "1.0.0",
+  "description": "Lab 17: Query Planning and Optimization",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}
