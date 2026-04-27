@@ -64,7 +64,7 @@ Focus: Making queries fast and working with location data.
   - Status: *AUDITED*
 - [ ] **LAB-016: Advanced Search: Atlas Search**
   - Concepts: Full-text search (Lucene engine), Analyzers, Fuzzy Search, Autocomplete, and Scoring.
-  - Status: *READY*
+  - Status: *AUDITED*
 - [ ] **LAB-017: DBA Wrap-up: Query Planning**
   - Concepts: Analyzing `explain()` output, `winningPlan` vs `rejectedPlans`, `IXSCAN` vs `COLLSCAN` detection.
   - Status: *Planned*
