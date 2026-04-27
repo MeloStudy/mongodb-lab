@@ -65,5 +65,26 @@ Index only documents that match a specific filter expression.
 
 ## 5. Index Covering
 A query is **covered** when *all* fields specified in the query filter AND the projection are present in the index.
-- **Performance Impact**: MongoDB retrieves the data directly from the index residing in RAM and **never touches the documents on disk**.
-- **Detection**: The `explain()` plan will show `totalDocsExamined: 0` and `totalKeysExamined: N`.
+
+### The Mechanics
+1. **Zero-Fetch**: MongoDB skips the `FETCH` stage. The query execution moves from `IXSCAN` directly to the client.
+2. **RAM-Only**: Data is served entirely from the WiredTiger cache (RAM). This is significantly faster than reading from disk, even on NVMe SSDs.
+3. **The `_id` Gotcha**: Since every MongoDB document has an `_id` by default, and `_id` is rarely part of compound indexes, you must explicitly project `{ _id: 0 }` to achieve a covered query.
+
+### Verification
+In the `explain("executionStats")` output:
+- `totalDocsExamined`: **0**
+- `totalKeysExamined`: **N** (where N is the number of results)
+- `stage`: **IXSCAN** (without a parent `FETCH` stage)
+
+### ⚠️ Limits of Coverage
+Not all indexes support index covering. Here is the compatibility breakdown:
+
+| Index Type | Supports Covering? | Why? |
+| :--- | :--- | :--- |
+| **Single Field** | ✅ Yes | Simple B-Tree mapping. |
+| **Compound** | ✅ Yes | Most powerful use case for covering multiple fields. |
+| **Multikey (Arrays)** | ❌ No | MongoDB must fetch the document to guarantee the array structure. |
+| **Geospatial** | ❌ No | Requires the original GeoJSON object for coordinate validation. |
+| **Hashed** | ❌ No | Only stores the hash, not the original value. |
+| **Text** | ❌ No | Only stores keywords/weights, not the full source text. |

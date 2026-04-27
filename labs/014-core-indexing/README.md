@@ -114,6 +114,13 @@ db.orders.find(
 **🔍 Analyze the Output**: 
 `totalDocsExamined` is `0`! MongoDB returned the results directly from the B-Tree (which lives in fast RAM). It never touched the hard drive. This is called a **Covered Query**.
 
+**💡 Why did this happen?**
+Normally, MongoDB performs an `IXSCAN` (finding the location) followed by a `FETCH` (reading the document from disk). In this case, MongoDB realized it didn't need the `FETCH` stage because:
+1. **Index Coverage**: All fields in the filter (`status`) and all fields in the projection (`status`, `orderDate`, `totalAmount`) are already present in our compound index.
+2. **The `_id` Constraint**: By default, MongoDB always tries to return the `_id`. Since our compound index does **not** contain `_id`, we had to explicitly exclude it (`_id: 0`). If we hadn't, MongoDB would have been forced to go to disk just to retrieve the `_id`, breaking the "Covered" status.
+
+*Result: You are reading data at the speed of RAM, bypassing the storage engine's document-level locks and disk I/O entirely.*
+
 ---
 
 ## 🛠 Command Dissection
