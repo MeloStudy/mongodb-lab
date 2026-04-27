@@ -24,7 +24,7 @@ This workflow is triggered when a laboratory is in `READY` status and the user w
 
 4. **Final Documentation**:
    - Generate `README.md` with step-by-step instructions.
-   - Generate `CONCEPT.md` with base theory.
+   - Generate `CONCEPT.md` providing a rigorous, deep-dive technical explanation. Cover internal database mechanics (e.g., memory usage, B-Trees, computational complexity) to ensure a comprehensive engineering understanding, avoiding superficial definitions.
    - Complete "Command Dissection" tables.
 
 5. **Delivery**:

@@ -13,7 +13,7 @@ To serve real-world enterprise needs, the curriculum MUST include a dedicated "A
 All core laboratory environments MUST be local, containerized, and portable using **Docker / Docker Compose**. A student should be able to spin up any lab environment with minimal host dependencies. Any lab completion or reset must leave no dangling containers or volumes.
 
 ### IV. Educational Clarity & Theoretical Foundation
-Every lab MUST be self-explanatory and conceptually grounded. Documenting the "how" (commands/code) is insufficient. Each lab must explain the "why" and the underlying NoSQL paradigm. Theory MUST be separated into its own `CONCEPT.md` file to keep the practical README focused and clean.
+Every lab MUST be self-explanatory and conceptually grounded. Documenting the "how" (commands/code) is insufficient. Each lab must explain the "why" and the underlying NoSQL paradigm. Theory MUST be separated into its own `CONCEPT.md` file to keep the practical README focused and clean. **Theoretical explanations MUST be technically rigorous, exploring internal database mechanics (e.g., data structures, memory implications, computational complexity) to ensure students achieve a deep engineering understanding, rather than just superficial definitions.**
 
 ### V. Robust Validation (TDD for Learning)
 Each laboratory MUST include solid automated tests to verify the learner's progress and the lab's integrity. These tests serve as the validation gate passing criteria.

@@ -21,7 +21,7 @@
 2. Establish the exact Testing validation mechanism.
 
 ## Phase 4: Full Documentation & Dissection
-1. Draft the `CONCEPT.md` outlining the theoretical concepts comprehensively, prioritizing the "Why".
+1. Draft the `CONCEPT.md` ensuring a rigorous technical deep-dive into the concepts (internal mechanics, memory, algorithms), prioritizing the engineering "Why" and avoiding superficial definitions.
 2. Draft the `README.md` step-by-step guide enforcing strict **Native Execution** (`docker-compose up -d`) logic.
 3. Apply the **Command Dissection** pattern inside the `README.md` for ANY new CLI flag or MongoSH method introduced.
 
