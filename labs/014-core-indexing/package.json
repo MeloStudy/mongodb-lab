@@ -1,0 +1,9 @@
+{
+  "name": "@mongodb-lab/014-core-indexing",
+  "version": "1.0.0",
+  "description": "Core Indexing & ESR Rule Laboratory",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}

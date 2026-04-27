@@ -2,7 +2,7 @@
 
 **Feature Branch**: `014-core-indexing`
 **Created**: 2026-04-25
-**Status**: READY
+**Status**: AUDITED
 **Syllabus Section**: Performance, Indices & Spatial Data
 
 ## Syllabus Alignment *(mandatory)*
