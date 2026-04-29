@@ -48,6 +48,11 @@ When creating a **Compound Index**, the order of fields is critical for performa
 
 ## 4. Specialized Index Modifiers
 
+### Unique Indexes
+Enforces data integrity by preventing duplicate values for the indexed field(s) across the collection.
+- **Mechanics**: During document insertion or update, MongoDB checks the B-Tree to ensure the new key does not already exist. If it does, the operation fails with a Duplicate Key error.
+- **Use Case**: Usernames, email addresses, or system-generated IDs (like `orderId`). By default, the `_id` field has a unique index.
+
 ### Sparse Indexes
 Only include documents that contain the indexed field.
 - **Memory Efficiency**: Saves RAM and disk space by not storing `null` entries for documents missing the field.

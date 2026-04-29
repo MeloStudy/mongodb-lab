@@ -41,7 +41,7 @@ db.orders.find({ orderId: "ORD-02500" }).explain("executionStats")
 **Why did this happen?** Because MongoDB has no "map" or "index" to find `ORD-02500`, it is forced to read every single one of the 5,000 documents from the hard drive into RAM just to check if the ID matches. This is called a **Collection Scan (COLLSCAN)**. It is extremely expensive in terms of CPU and Disk I/O.
 
 ### The Solution: B-Tree Indexes
-To fix this, we create a B-Tree index on `orderId`. This index acts like a book's index, mapping the ID directly to the document's physical location on disk.
+To fix this, we create a B-Tree index on `orderId`. This index acts like a book's index, mapping the ID directly to the document's physical location on disk. We also add a **Unique Constraint** (`{ unique: true }`) to enforce data integrity, ensuring no two orders can ever have the same `orderId`.
 ```javascript
 db.orders.createIndex({ orderId: 1 }, { unique: true })
 ```
@@ -121,6 +121,24 @@ Normally, MongoDB performs an `IXSCAN` (finding the location) followed by a `FET
 
 *Result: You are reading data at the speed of RAM, bypassing the storage engine's document-level locks and disk I/O entirely.*
 
+## 6. Index Lifecycle Management
+
+As your application evolves, some indexes may become obsolete or unused. Keeping unnecessary indexes slows down write operations and wastes RAM.
+
+### Listing Existing Indexes
+To see all indexes currently on a collection, use `getIndexes()`:
+```javascript
+db.orders.getIndexes()
+```
+*Notice that every collection has a default unique index on `_id`.*
+
+### Dropping an Index
+If you identify an index that is no longer needed (for example, the `orderId` index if we decide to change our ID strategy), you can remove it using the name provided in `getIndexes()` (usually the field name plus `_1` or `-1`):
+```javascript
+db.orders.dropIndex("orderId_1")
+```
+*The index is immediately removed, freeing up disk space and memory.*
+
 ---
 
 ## 🛠 Command Dissection
@@ -128,6 +146,9 @@ Normally, MongoDB performs an `IXSCAN` (finding the location) followed by a `FET
 | Command | Purpose | Educational Context |
 | :--- | :--- | :--- |
 | `createIndex()` | Creates a new B-Tree index | Trading write performance and storage space to gain read speed. |
+| `{ unique: true }` | Index modifier option | Enforces data integrity by preventing duplicate values. |
+| `getIndexes()` | Lists collection indexes | Essential for auditing current memory usage and index strategies. |
+| `dropIndex()` | Deletes a specific index | Used to clean up obsolete indexes, recovering RAM and write speed. |
 | `explain("executionStats")` | Audits query execution | Used to prove performance gains (e.g. `totalDocsExamined`). |
 
 ## 🧪 Validation

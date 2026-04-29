@@ -19,6 +19,7 @@ This lab focuses on the "Query Performance" aspect of the DBA role. The learner 
    - Demonstrate `db.orders.find({ orderId: "..." }).explain("executionStats")`.
    - Point out `totalDocsExamined` vs `nReturned`.
    - Create index: `db.orders.createIndex({ orderId: 1 }, { unique: true })`.
+   - Explain the `{ unique: true }` constraint and how it enforces data integrity for order IDs.
 2. **Testing**: 
    - `tests/01-basic-indexing.test.js`: Check for index presence and `IXSCAN` plan.
 
@@ -51,10 +52,15 @@ This lab focuses on the "Query Performance" aspect of the DBA role. The learner 
 2. **Testing**:
    - `tests/04-covered-queries.test.js`: Run projected query and verify zero document fetches.
 
-## Phase 6: Documentation & Dissection
-1. **CONCEPT.md**: Visual explanation of B-Tree indexing and the ESR diagram.
-2. **README.md**: Step-by-step performance tuning guide.
-3. **Dissection**: `createIndex` options (`unique`, `expireAfterSeconds`, `sparse`), and `explain()` verbosity levels.
+## Phase 6: Index Lifecycle Management
+1. **Instructional Path**:
+   - Demonstrate `db.orders.getIndexes()` to view existing indexes.
+   - Demonstrate `db.orders.dropIndex("index_name")` to delete an index.
+
+## Phase 7: Documentation & Dissection
+1. **CONCEPT.md**: Visual explanation of B-Tree indexing, unique constraints, and the ESR diagram.
+2. **README.md**: Step-by-step performance tuning guide including index management.
+3. **Dissection**: `createIndex` options (`unique`, `expireAfterSeconds`, `sparse`), `explain()` verbosity levels, `getIndexes()`, and `dropIndex()`.
 
 ## Constitution Compliance Check
 - [x] No `.sh` wrapper scripts.
