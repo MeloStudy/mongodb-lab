@@ -132,12 +132,18 @@ db.orders.getIndexes()
 ```
 *Notice that every collection has a default unique index on `_id`.*
 
+### Hiding an Index (Safe Deletion Strategy)
+Dropping a large index is risky because if you realize you *did* need it, rebuilding it can take hours and lock the database. Instead, you can **hide** it. A hidden index is ignored by the query planner but continues to be updated with new data.
+```javascript
+db.orders.hideIndex("orderId_1")
+```
+*You can now test query performance safely. If things slow down, simply run `unhideIndex("orderId_1")`. If performance remains stable after a few days, it is safe to drop it.*
+
 ### Dropping an Index
-If you identify an index that is no longer needed (for example, the `orderId` index if we decide to change our ID strategy), you can remove it using the name provided in `getIndexes()` (usually the field name plus `_1` or `-1`):
+Once you are certain an index is no longer needed, you can permanently remove it to free up disk space and memory:
 ```javascript
 db.orders.dropIndex("orderId_1")
 ```
-*The index is immediately removed, freeing up disk space and memory.*
 
 ---
 
@@ -148,6 +154,7 @@ db.orders.dropIndex("orderId_1")
 | `createIndex()` | Creates a new B-Tree index | Trading write performance and storage space to gain read speed. |
 | `{ unique: true }` | Index modifier option | Enforces data integrity by preventing duplicate values. |
 | `getIndexes()` | Lists collection indexes | Essential for auditing current memory usage and index strategies. |
+| `hideIndex()` | Hides index from planner | Used for safe performance testing before permanently dropping an index. |
 | `dropIndex()` | Deletes a specific index | Used to clean up obsolete indexes, recovering RAM and write speed. |
 | `explain("executionStats")` | Audits query execution | Used to prove performance gains (e.g. `totalDocsExamined`). |
 

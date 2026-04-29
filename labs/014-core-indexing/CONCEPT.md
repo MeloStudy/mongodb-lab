@@ -68,6 +68,11 @@ Index only documents that match a specific filter expression.
 - **Mechanics**: Much more flexible than Sparse indexes. You can define rules like `partialFilterExpression: { active: true }`.
 - **Benefit**: Keeps the B-Tree extremely small and efficient by excluding irrelevant documents entirely.
 
+### Hidden Indexes
+Allows you to hide an index from the query planner without actually dropping it.
+- **Mechanics**: The index remains in the B-Tree and continues to be updated during writes, but the query planner acts as if it doesn't exist.
+- **Use Case**: Safe performance testing. Before permanently dropping an index and risking a catastrophic performance drop (which would require a slow index rebuild), you can hide it, monitor the system, and drop it later if there is no negative impact.
+
 ## 5. Index Covering
 A query is **covered** when *all* fields specified in the query filter AND the projection are present in the index.
 

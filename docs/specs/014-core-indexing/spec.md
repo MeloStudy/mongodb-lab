@@ -17,7 +17,7 @@
   - LO-005: Identify **Covered Queries** where the index satisfies the entire query without touching the documents.
   - LO-006: Implement **Partial Indexes** to optimize indexing for specific data subsets.
   - LO-007: Understand the use of **Unique Constraints** to enforce data integrity.
-  - LO-008: Manage index lifecycles by listing (`getIndexes()`) and removing (`dropIndex()`) indexes.
+  - LO-008: Manage index lifecycles by listing (`getIndexes()`), hiding (`hideIndex()`), and removing (`dropIndex()`) indexes.
 
 ## Interactive Scenarios & Validation *(mandatory)*
 
@@ -82,14 +82,14 @@ The learner will create an index on `email` that only includes documents where `
 - **EX-004**: **Index Covering**: When the index becomes the data source, avoiding document fetches.
 - **EX-005**: **TTL Mechanics**: How the background TTL thread works in MongoDB.
 - **EX-006**: **Unique Constraints**: Ensuring data integrity at the database level to prevent duplicate records.
-- **EX-007**: **Index Lifecycle**: Utilizing commands to view and clean up unused or inefficient indexes.
+- **EX-007**: **Index Lifecycle & Hiding**: Utilizing commands to view, hide (for performance testing), and clean up unused indexes.
 
 ### Technical Requirements
 
 - **TR-001**: Lab MUST be containerized strictly using **Docker / Docker Compose** (MongoDB 7.0+).
 - **TR-002**: Lab README MUST provide native orchestration commands step-by-step. Bash scripts as wrappers are PROHIBITED.
 - **TR-003**: Lab MUST include automated validation tests (Node.js/Jest).
-- **TR-004**: Lab README MUST provide a "Command Dissection" for `createIndex()` (including `unique`), `explain()`, `getIndexes()`, and `dropIndex()`.
+- **TR-004**: Lab README MUST provide a "Command Dissection" for `createIndex()` (including `unique`), `explain()`, `getIndexes()`, `hideIndex()`, and `dropIndex()`.
 - **TR-005**: All testing scripts (`.js`) MUST be thoroughly commented to explain their purpose.
 - **TR-006**: Theoretical context MUST be provided in a `CONCEPT.md` file within the lab directory.
 - **TR-007**: Lab MUST explicitly instruct "Atomic Cleanup" via native commands (e.g. `docker-compose down -v --remove-orphans`).

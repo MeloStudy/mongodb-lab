@@ -55,12 +55,13 @@ This lab focuses on the "Query Performance" aspect of the DBA role. The learner 
 ## Phase 6: Index Lifecycle Management
 1. **Instructional Path**:
    - Demonstrate `db.orders.getIndexes()` to view existing indexes.
+   - Demonstrate `db.orders.hideIndex("index_name")` to temporarily disable an index for performance testing without dropping it.
    - Demonstrate `db.orders.dropIndex("index_name")` to delete an index.
 
 ## Phase 7: Documentation & Dissection
 1. **CONCEPT.md**: Visual explanation of B-Tree indexing, unique constraints, and the ESR diagram.
-2. **README.md**: Step-by-step performance tuning guide including index management.
-3. **Dissection**: `createIndex` options (`unique`, `expireAfterSeconds`, `sparse`), `explain()` verbosity levels, `getIndexes()`, and `dropIndex()`.
+2. **README.md**: Step-by-step performance tuning guide including index management and index hiding.
+3. **Dissection**: `createIndex` options (`unique`, `expireAfterSeconds`, `sparse`), `explain()` verbosity levels, `getIndexes()`, `hideIndex()`, and `dropIndex()`.
 
 ## Constitution Compliance Check
 - [x] No `.sh` wrapper scripts.
