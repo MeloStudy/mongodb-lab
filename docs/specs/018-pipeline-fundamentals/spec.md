@@ -15,6 +15,9 @@
   - LO-003: Aggregate data and use accumulators (`$sum`, `$avg`) with `$group`.
   - LO-004: Deconstruct array fields for individual processing using `$unwind`.
   - LO-005: Add computed fields and control result sets with `$addFields`, `$sort`, and `$limit`.
+  - LO-006: Apply **Pipeline Optimization** principles (Predicate Pushdown) to ensure index usage.
+  - LO-007: Manage **Memory Constraints** (100MB limit) and utilize `allowDiskUse`.
+  - LO-008: Handle edge cases in array flattening using `preserveNullAndEmptyArrays`.
 
 ## Interactive Scenarios & Validation *(mandatory)*
 
@@ -50,6 +53,14 @@ The learner will calculate a `totalValue` field ($addFields: price * quantity), 
 
 ---
 
+### Scenario 5 - The Memory Trap: allowDiskUse (Priority: P2)
+
+The learner will simulate a heavy `$sort` operation on a non-indexed field and observe the 100MB memory error. They will resolve it by implementing `allowDiskUse: true`.
+
+**Validation (Automated Test)**: Jest test will verify that the aggregation command includes the `allowDiskUse` option.
+
+---
+
 ## Educational Requirements *(mandatory)*
 
 ### Concepts to Explain
@@ -58,6 +69,8 @@ The learner will calculate a `totalValue` field ($addFields: price * quantity), 
 - **EX-002**: Accumulator operators in `$group`.
 - **EX-003**: The memory footprint of `$unwind` on large arrays.
 - **EX-004**: `$project` vs `$addFields`: When to use which for better readability and performance.
+- **EX-005**: **The 100MB Rule**: Understanding the aggregation engine's memory constraints.
+- **EX-006**: **Predicate Pushdown**: Why `$match` and `$sort` should attempt to use indexes before any document-modifying stages.
 
 ### Technical Requirements
 
