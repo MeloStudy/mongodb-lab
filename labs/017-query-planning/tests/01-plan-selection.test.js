@@ -34,5 +34,13 @@ describe('Scenario 1 & 2: Plan Selection (Winning vs Rejected)', () => {
 
     // 3. Audit the execution stats of the winner
     expect(explain.executionStats.totalKeysExamined).toBeGreaterThan(0);
+    
+    // 4. Verify that "works" is present in the candidate plans (allPlansExecution)
+    if (explain.queryPlanner.rejectedPlans.length > 0) {
+      const candidateStats = explain.executionStats.allPlansExecution;
+      expect(candidateStats).toBeDefined();
+      // In MongoDB 7.0, works is inside executionStages
+      expect(candidateStats[0].executionStages.works).toBeDefined();
+    }
   });
 });

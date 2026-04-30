@@ -7,6 +7,8 @@ Welcome to the DBA Masterclass. In this lab, you will stop just "creating indexe
 - Differentiate between `winningPlan` and `rejectedPlans`.
 - Force execution paths using `.hint()`.
 - Manage the Query Plan Cache and Index Filters.
+- **Understand the "Works" metric** and its role in the plan race.
+- **Identify Covered Queries** and their performance advantage.
 
 ## 🚀 Environment Setup
 
@@ -19,29 +21,10 @@ Welcome to the DBA Masterclass. In this lab, you will stop just "creating indexe
 
 ## 🛠️ Step-by-Step Scenarios
 
-### Scenario 1: Decoding the Winning Plan
-MongoDB has multiple indexes that could satisfy a query. Let's see which one it picks.
+### Scenario 1: Decoding the Winning Plan & "Works"
+MongoDB has multiple indexes that could satisfy a query. Let's see how it "raced" them.
 
-1.  Run a query for a specific device and status, and explain the plan:
-    ```bash
-    docker exec -it mongodb_lab_017 mongosh lab_db --eval '
-      db.telemetry.find({ 
-        deviceId: "DEV-001", 
-        status: "active" 
-      }).sort({ timestamp: -1 }).explain("queryPlanner")
-    '
-    ```
-
-2.  **Audit the output**:
-    *   Find the `winningPlan` stage. Which index did it pick? `idx_device_time` or `idx_status_time`?
-    *   Look for `rejectedPlans`. Why was the other index rejected?
-
----
-
-### Scenario 2: The Race (allPlansExecution)
-To see the actual performance metrics of the candidate plans during the "race", use `allPlansExecution`.
-
-1.  Run the query again with higher verbosity:
+1.  Run a query and explain the race:
     ```bash
     docker exec -it mongodb_lab_017 mongosh lab_db --eval '
       db.telemetry.find({ 
@@ -51,15 +34,16 @@ To see the actual performance metrics of the candidate plans during the "race", 
     '
     ```
 
-2.  **Analyze**:
-    *   Compare `executionStats.totalDocsExamined` across the different plan candidates in the `allPlansExecution` section.
+2.  **Audit the output**:
+    *   Find the `allPlansExecution` array.
+    *   Look for the **`works`** field in each candidate. The one with the highest `works` usually didn't win—the one that returned results with the least total `works` did.
 
 ---
 
-### Scenario 3: Manual Override with Hint
+### Scenario 2: Manual Override with Hint
 Sometimes, for a specific query, you know better than the optimizer.
 
-1.  Run a query that targets `status: "idle"`. Since 95% of our data is "idle", an index on status might be inefficient. Force it anyway using `.hint()`:
+1.  Force an index on status using `.hint()`:
     ```bash
     docker exec -it mongodb_lab_017 mongosh lab_db --eval '
       db.telemetry.find({ 
@@ -69,16 +53,36 @@ Sometimes, for a specific query, you know better than the optimizer.
     '
     ```
 
-2.  **Observe**:
-    *   Verify that `winningPlan` now explicitly uses `idx_status_time`.
-    *   Check `executionTimeMillis`. Is it slower than the default?
+---
+
+### Scenario 3: The Covered Query Advantage
+A "Covered Query" is the holy grail of performance because MongoDB never touches the collection—it stays entirely in the index.
+
+1.  Run a query that requires fetching the full document:
+    ```bash
+    docker exec -it mongodb_lab_017 mongosh lab_db --eval '
+      db.telemetry.find({ deviceId: "DEV-001" }).explain("queryPlanner")
+    '
+    ```
+    *   Notice the `FETCH` stage.
+
+2.  Now, add a **Projection** that only uses fields present in the index:
+    ```bash
+    docker exec -it mongodb_lab_017 mongosh lab_db --eval '
+      db.telemetry.find(
+        { deviceId: "DEV-001" }, 
+        { deviceId: 1, timestamp: 1, _id: 0 }
+      ).explain("queryPlanner")
+    '
+    ```
+    *   **Check the stage**: It should now be `IXSCAN` without a parent `FETCH`, or explicitly labeled `PROJECTION_COVERED`.
 
 ---
 
 ### Scenario 4: Restricting Choice with Index Filters
-As a DBA, you can "ban" an index for a specific query pattern without deleting it.
+As a DBA, you can "ban" an index for a specific **Query Shape**.
 
-1.  Set an Index Filter to only allow `idx_status_time` for this specific query shape:
+1.  Set an Index Filter to only allow `idx_status_time` for this query shape:
     ```bash
     docker exec -it mongodb_lab_017 mongosh lab_db --eval '
       db.runCommand({
@@ -89,29 +93,23 @@ As a DBA, you can "ban" an index for a specific query pattern without deleting i
     '
     ```
 
-2.  Run the explain again:
-    ```bash
-    docker exec -it mongodb_lab_017 mongosh lab_db --eval '
-      db.telemetry.find({ 
-        deviceId: "DEV-001", 
-        status: "active" 
-      }).explain("queryPlanner")
-    '
-    ```
-    *   Notice that `rejectedPlans` is now empty. The optimizer was not allowed to even consider `idx_device_time`.
-
-3.  Clear the filters:
-    ```bash
-    docker exec -it mongodb_lab_017 mongosh lab_db --eval '
-      db.runCommand({ planCacheClearFilters: "telemetry" })
-    '
-    ```
+2.  Run the explain and notice that `rejectedPlans` is now empty. The filter narrowed the optimizer's world.
 
 ---
 
-## 🧪 Validation
+## 📚 Decoding Explain Stats
 
-Run the automated tests to certify your mastery:
+When auditing `executionStats`, these fields are your primary indicators:
+
+| Field | Meaning | Performance Impact |
+| :--- | :--- | :--- |
+| **`nReturned`** | Number of documents returned. | Target outcome. |
+| **`totalKeysExamined`** | How many index entries were read. | Should be close to `nReturned`. |
+| **`totalDocsExamined`** | How many documents were fetched from disk. | **High values indicate a poor index.** |
+| **`works`** | Total units of logical work performed. | High values = High CPU/IO. |
+| **`executionTimeMillis`** | Total time for the query. | The ultimate user metric. |
+
+## 🧪 Validation
 ```bash
 npm test
 ```
@@ -120,16 +118,3 @@ npm test
 ```bash
 docker-compose down -v
 ```
-
----
-
-## 📚 Command Dissection
-
-| Command | Usage |
-| :--- | :--- |
-| `.explain("executionStats")` | Shows the winner and its performance metrics. |
-| `.explain("allPlansExecution")` | Shows metrics for all "raced" candidates. |
-| `.hint(indexName)` | Forces the use of a specific index. |
-| `$planCacheStats` (Agg) | Lists all currently cached query plans. |
-| `planCacheClear` | Wipes the cache for a collection. |
-| `planCacheSetFilter` | Restricts allowed indexes for a query shape. |

@@ -16,6 +16,9 @@
   - LO-004: Force specific index usage via `hint()` and observe the performance impact.
   - LO-005: Understand the **Query Plan Cache** and how to clear it to re-trigger plan selection.
   - LO-006: Implement **Index Filters** to restrict the optimizer's choices for specific query patterns.
+  - LO-007: Define and identify **Query Shapes** and their impact on Plan Cache entries.
+  - LO-008: Interpret the **`works`** metric in `allPlansExecution` as the unit of computational cost.
+  - LO-009: Differentiate between **Index-Only** (Covered) and **FETCH**-based plans.
 
 ## Interactive Scenarios & Validation *(mandatory)*
 
@@ -59,14 +62,31 @@ The learner will implement an **Index Filter** for a specific query shape. They 
 
 ---
 
+### Scenario 6 - The Covered Query Advantage (Priority: P2)
+
+The learner will observe how adding a projection that matches an index's fields allows the optimizer to choose an `IXSCAN` without a `FETCH` stage, even if another index has a higher selectivity for the predicate.
+
+**Validation (Automated Test)**: Jest test will verify the presence of `PROJECTION_COVERED` or the absence of `FETCH` in the winning plan for a covered query.
+
+---
+
+### Scenario 6 - Analyzing Query Shapes (Priority: P3)
+
+The learner will execute queries with varying parameters to observe how MongoDB groups similar queries into a single "Query Shape" within the Plan Cache.
+
+**Validation (Automated Test)**: Jest test will verify that multiple queries sharing the same shape result in a single plan cache entry.
+
+---
+
 ## Educational Requirements *(mandatory)*
 
 ### Concepts to Explain
 
 - **EX-001**: **The Query Optimizer Lifecycle**: How MongoDB selects a plan (Candidate plans -> Trial period -> Winning plan).
 - **EX-002**: **Stage Analysis**: What `COLLSCAN`, `IXSCAN`, `FETCH`, `SORT`, and `PROJECTION_COVERED` mean in practical terms.
-- **EX-003**: **The Cost of Sorting**: Why `SORT` stages are often the primary cause of query latency.
-- **EX-004**: **Plan Cache Persistence**: How long plans stay in cache and what triggers a re-evaluation.
+- EX-003: **The Cost of Sorting**: Why `SORT` stages are often the primary cause of query latency.
+- EX-004: **Plan Cache Persistence**: How long plans stay in cache and what triggers a re-evaluation.
+- EX-005: **The "Works" Metric**: How MongoDB measures internal cost during the candidate race.
 
 ### Technical Requirements
 
