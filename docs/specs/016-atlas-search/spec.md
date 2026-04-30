@@ -17,6 +17,9 @@
   - LO-005: Implement **Fuzzy Search** to handle user typos using Levenshtein distance.
   - LO-006: Build an **Autocomplete** feature using specialized index mappings.
   - LO-007: Analyze and sort results by **Relevance Score**.
+  - LO-008: Implement complex search logic using the **`compound`** operator (`must`, `filter`).
+  - LO-009: Retrieve and interpret **Search Highlights** for better UI feedback.
+  - LO-010: Understand the architectural role of the **`mongot`** process in the Atlas Search engine.
 
 ## Interactive Scenarios & Validation *(mandatory)*
 
@@ -44,13 +47,31 @@ Learners will modify the search index to support the `autocomplete` type and imp
 
 ---
 
+### Scenario 4 - Advanced Filtering (Priority: P2)
+
+Learners will implement a query that searches for keywords but filters the results by a specific genre, using the `compound` operator to ensure the filter doesn't affect the relevance score.
+
+**Validation (Automated Test)**: Jest test will verify that results belong to the correct genre and are still sorted by relevance.
+
+---
+
+### Scenario 5 - Search Highlighting (Priority: P3)
+
+Learners will enable highlighting in their query and project the matched snippets to see exactly where the keywords were found in the text.
+
+**Validation (Automated Test)**: Jest test will verify the presence of the `highlights` metadata in the output.
+
+---
+
 ## Educational Requirements *(mandatory)*
 
 ### Concepts to Explain
 
 - **EX-001**: **The Inverted Index**: How Lucene breaks text into tokens and why it's faster than `$regex` for large text bodies.
 - **EX-002**: **Analyzers & Tokenizers**: The "factory" that processes text before indexing (Standard vs English).
-- **EX-003**: **Scoring (TF-IDF / BM25)**: Why some results appear higher than others.
+- EX-003: **Scoring (TF-IDF / BM25)**: Why some results appear higher than others.
+- EX-004: **The mongot Sidecar**: The decoupled architecture of the search engine vs the core database.
+- EX-005: **Compound Logic**: The semantics of `must`, `mustNot`, `should`, and `filter`.
 
 ### Technical Requirements
 

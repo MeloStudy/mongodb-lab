@@ -2,13 +2,23 @@
 
 Welcome to the future of data retrieval. In this lab, you will move beyond standard B-Tree indexes and implement a professional-grade search engine using **Atlas Search**.
 
+## 🏗 Understanding the Architecture (`mongot`)
+
+Before starting, it is vital to understand that Atlas Search does NOT run inside the core `mongod` process.
+- **`mongod`**: The primary database process (Handles B-Trees, CRUD, etc.).
+- **`mongot`**: The search sidecar process (Handles Lucene, Inverted Indexes, etc.).
+
+When you run a `$search` query, `mongod` proxies the request to `mongot`. If `mongot` is down, full-text search fails even if the database is running.
+
+---
+
 ## 🚀 Environment Setup
 
-Launch the laboratory container (this uses the `atlas-local` engine):
+Launch the laboratory container:
 ```bash
 docker-compose up -d
 ```
-*Wait ~20 seconds for the engine to initialize.*
+*Wait ~20 seconds for the search engine to initialize.*
 
 Enter the shell:
 ```bash
@@ -19,7 +29,7 @@ docker exec -it mongodb_lab_016 mongosh search_db
 
 ## 1. Creating the Search Index
 
-Unlike standard indexes, Atlas Search indexes are defined using JSON. We will create a "Dynamic Mapping" index that automatically indexes all string fields in our `books` collection.
+Atlas Search indexes are defined using JSON. We will create a mapping that supports full-text, autocomplete, and filtering.
 
 Run this command in `mongosh`:
 ```javascript
@@ -30,15 +40,16 @@ db.books.createSearchIndex("default", {
       title: [
         { type: "string" },
         { type: "autocomplete" }
-      ]
+      ],
+      genre: { type: "string" },
+      description: { type: "string" }
     }
   }
 })
 ```
-*Note: We explicitly added a mapping for `title` as `autocomplete` for Scenario 3.*
 
 **🔍 Wait for the Index**:
-Search indexes are built asynchronously by a separate process. Check the status:
+Search indexes are built asynchronously. Check the status:
 ```javascript
 db.books.getSearchIndexes()
 ```
@@ -49,11 +60,9 @@ db.books.getSearchIndexes()
 ## 2. Scenario 1: The Library Search ($search)
 
 ### The Problem
-You need to find books about "scalable high-performance" systems. A standard `$regex` would be slow and wouldn't rank the best match first.
+You need to find books about "scalable high-performance" systems.
 
 ### The Solution: Full-Text Analysis
-We use the `$search` aggregation stage. Notice we don't need to specify the field if we use the default index, but here we explicitly target `title` and `description`:
-
 ```javascript
 db.books.aggregate([
   {
@@ -68,18 +77,16 @@ db.books.aggregate([
 ])
 ```
 **🔍 Analyze the Output**:
-Notice that "MongoDB: The Definitive Guide" appears first. Why? Because Lucene analyzed the description and found both terms, calculating a higher relevance score than other documents.
+Notice that "MongoDB: The Definitive Guide" appears first due to its high relevance score (BM25).
 
 ---
 
 ## 3. Scenario 2: Handling Typos (Fuzzy)
 
 ### The Problem
-A user types "Mngodb" instead of "MongoDB". A standard index would return 0 results.
+A user types "Mngodb" instead of "MongoDB".
 
 ### The Solution: Levenshtein Distance
-By adding the `fuzzy` option, we tell Atlas Search to allow for minor character differences:
-
 ```javascript
 db.books.aggregate([
   {
@@ -94,19 +101,15 @@ db.books.aggregate([
   }
 ])
 ```
-**🔍 Analyze the Output**:
-Success! The engine calculated that "Mngodb" is only 1 edit away from "MongoDB" and returned the document.
 
 ---
 
 ## 4. Scenario 3: Real-time Autocomplete
 
 ### The Problem
-As a user types "Clea", you want to suggest "Clean Code" immediately.
+As a user types "Clea", you want to suggest "Clean Code".
 
 ### The Solution: N-Grams
-Autocomplete works by breaking words into fragments (e.g., "Cle", "Clea", "Clean"). Since we mapped the `title` field as `autocomplete` in Step 1, we can query it now:
-
 ```javascript
 db.books.aggregate([
   {
@@ -123,48 +126,84 @@ db.books.aggregate([
 
 ---
 
-## 5. Scenario 4: Ranking & Scoring
+## 5. Scenario 4: Filtering results (Compound Search)
 
 ### The Problem
-You want to see *how* MongoDB decided which book was better.
+You want to search for "database" books but ONLY in the "Technology" genre. You don't want the genre filter to affect the relevance score.
 
-### The Solution: Meta-data Projection
-We can project the `searchScore` metadata into a field:
+### The Solution: The `compound` Operator
+```javascript
+db.books.aggregate([
+  {
+    $search: {
+      index: "default",
+      compound: {
+        must: [{
+          text: {
+            query: "database",
+            path: ["title", "description"]
+          }
+        }],
+        filter: [{
+          text: {
+            query: "Technology",
+            path: "genre"
+          }
+        }]
+      }
+    }
+  }
+])
+```
+**🔍 Analyze the Output**:
+Only "Technology" books are returned. The `filter` clause is binary (match/no-match) and doesn't change the BM25 score, unlike `must`.
 
+---
+
+## 6. Scenario 5: Visualizing Matches (Highlighting)
+
+### The Problem
+In a UI, you want to show snippets of text with the matching words bolded.
+
+### The Solution: `highlight` Metadata
 ```javascript
 db.books.aggregate([
   {
     $search: {
       index: "default",
       text: {
-        query: "software development mastery",
-        path: ["title", "description"]
+        query: "scalable",
+        path: "description"
+      },
+      highlight: {
+        path: "description"
       }
     }
   },
   {
     $project: {
-      _id: 0,
       title: 1,
-      score: { $meta: "searchScore" }
+      highlights: { $meta: "searchHighlights" }
     }
   }
 ])
 ```
 **🔍 Analyze the Output**:
-"The Pragmatic Programmer" should have the highest score. Dissect the score: it is a combination of how many times your keywords appeared (TF) and how unique those keywords are in the whole library (IDF).
+Notice the new `highlights` field. It contains an array of matches with their positions, allowing your frontend to render the bold text.
 
 ---
 
 ## 🛠 Command Dissection
 
-| Operator | Purpose | Technical Detail |
+| Operator / Field | Purpose | Technical Detail |
 | :--- | :--- | :--- |
-| `$search` | Primary Entry Point | Must be the first stage in an aggregation pipeline. |
-| `text` | Keyword Search | Standard operator for finding words or phrases. |
-| `fuzzy` | Error Tolerance | Uses Levenshtein algorithm. `maxEdits` can be 1 or 2. |
-| `autocomplete` | Real-time Search | Requires a specific `autocomplete` mapping in the index definition. |
-| `$meta: "searchScore"` | Relevance Logic | Projects the internal calculation of the BM25 algorithm. |
+| `mongot` | Search Sidecar | The Java/Lucene process that powers Atlas Search. |
+| `$search` | Primary Stage | Must be the first stage. Delegates to `mongot`. |
+| `createSearchIndex` | Index Creation | Defines how Lucene should analyze fields. |
+| `compound` | Boolean Logic | Combines `must`, `should`, and `filter` clauses. |
+| `filter` | Binary Matching | Does NOT contribute to the relevance score. |
+| `highlight` | Snippet Offset | Returns metadata for UI bolding. |
+| `$meta: "searchHighlights"` | Projection | Accesses the internal highlight metadata from `mongot`. |
 
 ## 🧪 Validation
 ```bash
