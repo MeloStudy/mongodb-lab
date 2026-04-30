@@ -1,0 +1,9 @@
+{
+  "name": "@mongodb-lab/019-advanced-analytics-stages",
+  "version": "1.0.0",
+  "description": "Lab 019: Advanced Analytics Stages",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}

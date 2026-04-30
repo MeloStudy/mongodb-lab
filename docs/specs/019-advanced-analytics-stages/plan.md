@@ -25,9 +25,9 @@ This lab focuses on the powerful "Application-Side" logic moved into the databas
 1. **Instructional Path**: Demonstrate `$facet` for UI-style filtering. Finally, show how to persist these complex results using `$merge` into a summary collection.
 2. **Testing**: Jest tests verifying the existence of facet buckets and the incremental update behavior of `$merge`.
 
-## Phase 4: Scenario 5 - Cross-Database Joins
-1. **Instructional Path**: Explain how to use the `database` parameter in `$lookup` (MongoDB 5.1+) to reference collections in other databases on the same cluster.
-2. **Testing**: Jest test performing a join between the local `orders` and `global_metadata.currencies`.
+## Phase 4: Scenario 5 - Uncorrelated Subqueries
+1. **Instructional Path**: Explain how to use `let` and `pipeline` for joins that don't rely on simple field equality (e.g., matching a value within a range).
+2. **Testing**: Jest test performing a join between `orders` and a `discounts` collection based on total value.
 
 ## Phase 5: Full Documentation & Dissection
 1. **CONCEPT.md**: Deep dive into the Aggregation Engine's memory management (100MB limit per stage, `allowDiskUse`), and the mechanics of Joins vs Embedding.

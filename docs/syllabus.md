@@ -75,9 +75,9 @@ Focus: Complex data transformations and analytics pipelines.
 - [x] **LAB-018: Pipeline Fundamentals**
   - Concepts: `$match`, `$group`, `$project`, `$addFields`, `$unwind`, `$sort`, `$limit`.
   - Status: *AUDITED*
-- [ ] **LAB-019: Advanced Analytics Stages**
+- [x] **LAB-019: Advanced Analytics Stages**
   - Concepts: `$lookup` (Left Outer Join), `$graphLookup` (Recursive), `$facet` (Categorization), `$out` & `$merge`.
-  - Status: *READY*
+  - Status: *AUDITED*
 
 ## Module 6: Security & Administration
 Focus: Protecting data and securing the server.

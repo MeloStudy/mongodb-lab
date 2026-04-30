@@ -2,7 +2,7 @@
 
 **Feature Branch**: `019-advanced-analytics-stages`
 **Created**: 2026-04-27
-**Status**: READY
+**Status**: AUDITED
 **Syllabus Section**: The Aggregation Framework
 
 ## Syllabus Alignment *(mandatory)*
@@ -53,11 +53,11 @@ The learner will use `$merge` to upsert the results of a daily sales aggregation
 
 ---
 
-### Scenario 5 - The Global Reference Join (Priority: P2)
+### Scenario 5 - Uncorrelated Subqueries (Priority: P2)
 
-The learner will join their local `orders` collection with a `currencies` collection located in a separate `global_metadata` database to calculate order totals in multiple currencies.
+The learner will perform a complex join using a custom `pipeline` inside `$lookup` (uncorrelated join) to retrieve data based on a range rather than a direct equality match.
 
-**Validation (Automated Test)**: Jest test verifying the pipeline correctly references the `global_metadata.currencies` namespace and returns the converted amounts.
+**Validation (Automated Test)**: Jest test verifying that the join correctly retrieves documents using the custom pipeline and `let` variables.
 
 ## Educational Requirements *(mandatory)*
 
