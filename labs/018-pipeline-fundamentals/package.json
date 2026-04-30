@@ -1,0 +1,9 @@
+{
+  "name": "@mongodb-lab/018-pipeline-fundamentals",
+  "version": "1.0.0",
+  "description": "Lab 018: Pipeline Fundamentals",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}

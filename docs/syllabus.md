@@ -72,9 +72,9 @@ Focus: Making queries fast and working with location data.
 ## Module 5: The Aggregation Framework
 Focus: Complex data transformations and analytics pipelines.
 
-- [ ] **LAB-018: Pipeline Fundamentals**
+- [x] **LAB-018: Pipeline Fundamentals**
   - Concepts: `$match`, `$group`, `$project`, `$addFields`, `$unwind`, `$sort`, `$limit`.
-  - Status: *READY*
+  - Status: *AUDITED*
 - [ ] **LAB-019: Advanced Analytics Stages**
   - Concepts: `$lookup` (Left Outer Join), `$graphLookup` (Recursive), `$facet` (Categorization), `$out` & `$merge`.
   - Status: *READY*

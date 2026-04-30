@@ -2,7 +2,7 @@
 
 **Feature Branch**: `018-pipeline-fundamentals`
 **Created**: 2026-04-27
-**Status**: READY
+**Status**: AUDITED
 **Syllabus Section**: The Aggregation Framework
 
 ## Syllabus Alignment *(mandatory)*
@@ -14,10 +14,12 @@
   - LO-002: Efficiently filter and shape data using `$match` and `$project`.
   - LO-003: Aggregate data and use accumulators (`$sum`, `$avg`) with `$group`.
   - LO-004: Deconstruct array fields for individual processing using `$unwind`.
-  - LO-005: Add computed fields and control result sets with `$addFields`, `$sort`, and `$limit`.
+  - LO-005: Add and modify fields using `$addFields` and its modern alias **`$set`**.
   - LO-006: Apply **Pipeline Optimization** principles (Predicate Pushdown) to ensure index usage.
   - LO-007: Manage **Memory Constraints** (100MB limit) and utilize `allowDiskUse`.
   - LO-008: Handle edge cases in array flattening using `preserveNullAndEmptyArrays`.
+  - LO-009: Understand and identify **Stage Folding** in the aggregation optimizer.
+  - LO-010: Maintain **Type Integrity** (Decimal128) throughout transformations.
 
 ## Interactive Scenarios & Validation *(mandatory)*
 

@@ -1,45 +1,35 @@
-# Implementation Plan: LAB-018 Pipeline Fundamentals
+# Implementation Plan: LAB-018 Pipeline Fundamentals [REFINED]
 
 **Branch**: `018-pipeline-fundamentals` | **Date**: 2026-04-30
 **Input**: Specification from `/specs/018-pipeline-fundamentals/spec.md`
 
 ## Summary
 
-This lab introduces the Aggregation Framework, moving from simple queries to multi-stage transformations. Refined to focus on optimization (Predicate Pushdown) and operational constraints (Memory limits).
+Refined to include a deep dive into stage anatomy for beginners, while maintaining the advanced optimization and memory management topics.
 
 ## Phase 1: Monorepo Infrastructure
-1. **Workspace Registration**: `@mongodb-lab/018-pipeline-fundamentals`.
-2. **Data Requirements**: 
-   - `init/01-sales.js`: Seed with ~100 sales records.
-   - Include **Refunds** (negative `price` or `quantity`) to test accumulator robustness.
-   - Ensure a "skewed" document exists with an empty `tags` array to test `$unwind`.
+1. **Data Requirements**: 
+   - Seed with sales data. Ensure **Decimal128** is used for all currency fields to validate type integrity.
 
-## Phase 2: Scenario 1 & 2 - Optimization and Grouping
+## Phase 2: Stage Anatomy & Fundamentals
 1. **Instructional Path**: 
-   - Emphasize starting with `$match` (Predicate Pushdown).
-   - Use `$group` for revenue calculation. Handle negative values correctly.
+   - Crash Course on `$match`, `$group`, `$project`, `$sort`, and **`$set`**.
+   - Explain `$set` as the preferred modern alias for adding fields.
 2. **Testing**: 
-   - Verify that `$match` is the first stage in the pipeline.
-   - Verify math totals including potential refunds.
+   - Verify `$set` usage in the report scenario.
+   - Assert `Decimal128` type in aggregation results.
 
-## Phase 3: Scenario 3 & 4 - Advanced Unwinding and Reporting
+## Phase 3: Advanced Optimization & Operational Rigor
 1. **Instructional Path**: 
-   - Use `$unwind` with `preserveNullAndEmptyArrays: true`.
-   - Chain `$addFields`, `$sort`, and `$limit`.
-2. **Testing**: 
-   - Count documents after `$unwind` (ensure empty arrays aren't dropped).
-
-## Phase 4: Scenario 5 - Memory Management
-1. **Instructional Path**: 
-   - Force a large sort. Explain the 100MB limit.
-   - Show how to enable `allowDiskUse`.
+   - **Stage Folding**: Show how the optimizer merges stages.
+   - **Memory**: Force sort errors and fix with `allowDiskUse`.
 2. **Testing**:
-   - `tests/memory.test.js`: Verify `allowDiskUse` flag in the command.
+   - `tests/01-fundamentals.test.js`: Check explain output for folded stages.
+   - `tests/05-memory.test.js`: Verify operational flags.
 
-## Phase 5: Documentation & Dissection
-1. **CONCEPT.md**: Visual diagram of "Predicate Pushdown" and the "Stream" nature of the pipeline.
-2. **README.md**: Step-by-step investigation using `.explain()` on the pipeline.
-3. **Command Dissection**: Detailed breakdown of 7 stages + `allowDiskUse` option.
+## Phase 4: Documentation
+1. **CONCEPT.md**: Visual breakdown of stage syntax (Anatomy).
+2. **README.md**: Step-by-step tutorial format with "Learning Moments".
 
 ## Constitution Compliance Check
 - [x] No `.sh` wrapper scripts.
