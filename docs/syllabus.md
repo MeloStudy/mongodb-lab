@@ -84,7 +84,7 @@ Focus: Protecting data and securing the server.
 
 - [ ] **LAB-020: Authentication & RBAC**
   - Concepts: Creating Users, Built-in Roles, Custom Roles, Scoping access by database.
-  - Status: *Planned*
+  - Status: *READY*
 - [ ] **LAB-021: DBA Wrap-up: Encryption & Network Security**
   - Concepts: Enabling Auth in `mongod.conf`, Keyfiles, SSL/TLS, Encryption at Rest (WiredTiger).
   - Status: *Planned*
